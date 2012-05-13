@@ -1,0 +1,32 @@
+<queue-entries>
+	<queue>
+		<name>ActionQueue</name>
+		<rate>5/s</rate>
+		<max-concurrent-requests>500</max-concurrent-requests>
+		<bucket-size>2</bucket-size> 
+		<retry-parameters>
+			<task-retry-limit>7</task-retry-limit>
+			<min-backoff-seconds>10</min-backoff-seconds>
+			<max-backoff-seconds>200</max-backoff-seconds>
+			<max-doublings>2</max-doublings>
+		</retry-parameters>
+	</queue>
+	<queue>
+		<name>PoliticianQueue</name>
+		<rate>1/s</rate>
+		<max-concurrent-requests>500</max-concurrent-requests>
+		<bucket-size>2</bucket-size> 
+		<retry-parameters>
+			<task-retry-limit>7</task-retry-limit>
+			<min-backoff-seconds>10</min-backoff-seconds>
+			<max-backoff-seconds>200</max-backoff-seconds>
+			<max-doublings>2</max-doublings>
+		</retry-parameters>
+	</queue>
+	
+	<!-- Pull Queue -->
+	<queue>
+		<name>ProcessedActionQueue</name>
+		<mode>pull</mode>
+	</queue>
+</queue-entries>
