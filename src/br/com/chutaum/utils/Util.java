@@ -23,7 +23,6 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import br.com.chutaum.model.Pagination;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
@@ -181,18 +180,15 @@ public class Util {
  * @param ancestor : the parent key of the entity group where we need to search
  * @return iterable with all children of the parent of the specified kind
  */
-public static Pagination listChildren(String kind, Key ancestor,int sizePage, int offset ) {
-logger.log(Level.INFO, "Search entities based on parent");
-Query query = new Query(kind);
-query.setAncestor(ancestor);
-FetchOptions fetchOptions = FetchOptions.Builder.withLimit(sizePage);
-query.addFilter(Entity.KEY_RESERVED_PROPERTY, FilterOperator.GREATER_THAN, ancestor);
-PreparedQuery pq = datastore.prepare(query);
-Pagination pag = new Pagination();
-pag.setEntitys(pq.asQueryResultIterable(fetchOptions.offset(offset)));
-pag.setSize(pq.countEntities(null));
-return pag;
-}
+  public static Iterable<Entity> listChildren(String kind, Key ancestor,int sizePage, int offset ) {
+		logger.log(Level.INFO, "Search entities based on parent");
+		Query query = new Query(kind);
+		query.setAncestor(ancestor);
+		FetchOptions fetchOptions = FetchOptions.Builder.withLimit(sizePage);
+		query.addFilter(Entity.KEY_RESERVED_PROPERTY, FilterOperator.GREATER_THAN, ancestor);
+		PreparedQuery pq = datastore.prepare(query);
+		return pq.asQueryResultIterable(fetchOptions.offset(offset));
+  }
 
 	/**
 	 * Get the list of keys of all children for a given entity kind in a given entity group 

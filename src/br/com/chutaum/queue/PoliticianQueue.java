@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.chutaum.politician.Politician;
+import br.com.chutaum.model.Politician;
 import br.com.chutaum.utils.Util;
 
 import com.google.appengine.api.datastore.Entity;

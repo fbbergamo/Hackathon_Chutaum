@@ -1,4 +1,4 @@
-package br.com.chutaum.politician;
+package br.com.chutaum.model;
 
 
 public class Politician {
