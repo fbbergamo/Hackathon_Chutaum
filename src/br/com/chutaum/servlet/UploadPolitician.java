@@ -25,7 +25,6 @@ public class UploadPolitician extends HttpServlet {
 	
 	    public void doPost(HttpServletRequest req, HttpServletResponse res)
 	        throws ServletException, IOException {
-	    	
 	    	    Map<String, BlobKey> blobs = blobstoreService.getUploadedBlobs(req);
 		        BlobKey blobKey = blobs.get("myFile");
 		        Scanner data = new Scanner( new String(blobstoreService.fetchData(blobKey,0,1015807)));
@@ -42,13 +41,9 @@ public class UploadPolitician extends HttpServlet {
 		        		  	                          .param("politician", line)
 		        		  	                          .method(Method.POST)
 		        		  	                          .header("Host", BackendServiceFactory.getBackendService().getBackendAddress("action-backend"));
-		        		  queue.add(taskOptions);
-		        		
-		        		        	
-		        	
+		        		  queue.add(taskOptions);    	
 		        	}
 		        }
-	    	
 	    }
 	    
 }
