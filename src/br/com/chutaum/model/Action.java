@@ -75,4 +75,9 @@ public class Action implements java.io.Serializable  {
 			
 	}
 	
+	public void methooooodo() {
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+	}
+	
+	
 }
