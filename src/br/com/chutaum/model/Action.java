@@ -13,6 +13,7 @@ public class Action implements java.io.Serializable  {
 	private String content;
 	private int idPolition;
 	private String kind;
+	private long dateMs;
 	
 	public long getId() {
 		return id;
@@ -77,6 +78,14 @@ public class Action implements java.io.Serializable  {
 	
 	public void methooooodo() {
 		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+	}
+
+	public long getDateMs() {
+		return dateMs;
+	}
+
+	public void setDateMs(long dateMs) {
+		this.dateMs = dateMs;
 	}
 	
 	
