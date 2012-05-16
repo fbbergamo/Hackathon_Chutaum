@@ -45,7 +45,7 @@ public class ActionQueue  extends HttpServlet {
        		 
 	
 	  	
-	  	Entity product = Util.findEntity(KeyFactory.createKey("Politician", action.getIdPolition()));
+		 	Entity product = Util.findEntity(KeyFactory.createKey("Politician", action.getIdPolition()));
 
 	 		Entity entity = new Entity("Action", product.getKey());
 	 		entity.setProperty("Content",action.getContent());

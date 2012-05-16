@@ -58,14 +58,15 @@ public class UploadAction extends HttpServlet {
 	    public void doGet(HttpServletRequest req, HttpServletResponse res)
 		      throws ServletException, IOException {
 	    	PrintWriter out = res.getWriter();
-	    	Key ancestorKey = KeyFactory.createKey("Politician",Integer.parseInt(req.getParameter("vereador")));
-	    	Entity e = Util.findEntity(ancestorKey);
-	    	Map<String, Object> properties = e.getProperties();
-	    	 for (String key : properties.keySet()) {
-	    	        out.print("\"" + key + "\" : \"" + properties.get(key) + "\",");
-	    	      }
-	    	out.print("</br>");
-	    	
-	    	out.print(Util.writeJSON(Util.listChildren("Action", ancestorKey,100,1)));
+	    	if (req.getParameter("vereador")!=null) {
+		    	Key ancestorKey = KeyFactory.createKey("Politician",Integer.parseInt(req.getParameter("vereador")));
+		    	Entity e = Util.findEntity(ancestorKey);
+		    	Map<String, Object> properties = e.getProperties();
+			    	 for (String key : properties.keySet()) {
+			    	        out.print("\"" + key + "\" : \"" + properties.get(key) + "\",");
+			    	      }
+		    	out.print("</br>");
+		    	out.print(Util.writeJSON(Util.listChildren("Action", ancestorKey,100,1)));
+	    	}
 	    }
 }
