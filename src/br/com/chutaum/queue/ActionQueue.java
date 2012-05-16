@@ -4,7 +4,6 @@ package br.com.chutaum.queue;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import au.com.bytecode.opencsv.CSVReader;
 import br.com.chutaum.model.Action;
 import br.com.chutaum.utils.Util;
 
@@ -47,12 +45,6 @@ public class ActionQueue  extends HttpServlet {
 				e.printStackTrace();
 			}
 		 	
-<<<<<<< HEAD
-=======
-       		 
-	
-	  	
->>>>>>> d30f21fca7b1f4cccc5638a4bbca34e8a65b6330
 		 	Entity product = Util.findEntity(KeyFactory.createKey("Politician", action.getIdPolition()));
 
 	 		Entity entity = new Entity("Action", product.getKey());
