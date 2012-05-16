@@ -47,6 +47,12 @@ public class ActionQueue  extends HttpServlet {
 				e.printStackTrace();
 			}
 		 	
+<<<<<<< HEAD
+=======
+       		 
+	
+	  	
+>>>>>>> d30f21fca7b1f4cccc5638a4bbca34e8a65b6330
 		 	Entity product = Util.findEntity(KeyFactory.createKey("Politician", action.getIdPolition()));
 
 	 		Entity entity = new Entity("Action", product.getKey());
