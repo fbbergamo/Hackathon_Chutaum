@@ -1,9 +1,10 @@
-	package br.com.chutaum.queue;
+package br.com.chutaum.queue;
 
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,28 +27,30 @@ public class ActionQueue  extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 	        throws ServletException, IOException {
-
-       		 String [] input = req.getParameter("action").split(";");
+		
+       		String [] input = req.getParameter("action").split(";"); 
        		 
        		Action action = new Action();
 		 	action.setIdPolition(Integer.parseInt(input[0]));
 		 	action.setContent(input[1]);
 		 	action.setKind(input[2]);
 		 	
-
+		 			 	
 		 	try {
-				action.setDate(new SimpleDateFormat("dd/MM/yyyy").parse(input[3]));
+		 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");  
+		 		Date date = format.parse(input[3]);
+				action.setDate(date);
+				action.setDateMs(date.getTime());
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		 	
-	  	
 		 	Entity product = Util.findEntity(KeyFactory.createKey("Politician", action.getIdPolition()));
 
 	 		Entity entity = new Entity("Action", product.getKey());
 	 		entity.setProperty("Content",action.getContent());
 	 		entity.setProperty("Date",action.getDate());
+	 		entity.setProperty("DateMs", action.getDateMs());
 	 		entity.setProperty("Kind",action.getKind());
 	 		Util.persistEntity(entity);
 
