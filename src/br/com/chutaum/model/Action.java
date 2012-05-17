@@ -4,9 +4,6 @@ import java.util.Date;
 
 public class Action implements java.io.Serializable  {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private long id;
 	private Date date;
@@ -75,9 +72,7 @@ public class Action implements java.io.Serializable  {
 			
 	}
 	
-	public void methooooodo() {
-		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-	}
+
 	
 	
 }

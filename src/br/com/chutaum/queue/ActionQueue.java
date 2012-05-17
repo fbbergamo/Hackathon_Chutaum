@@ -1,4 +1,4 @@
-package br.com.chutaum.queue;
+	package br.com.chutaum.queue;
 
 
 import java.io.IOException;
@@ -42,8 +42,6 @@ public class ActionQueue  extends HttpServlet {
 				e.printStackTrace();
 			}
 		 	
-       		 
-	
 	  	
 		 	Entity product = Util.findEntity(KeyFactory.createKey("Politician", action.getIdPolition()));
 

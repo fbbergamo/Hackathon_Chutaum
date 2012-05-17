@@ -120,18 +120,38 @@ public class Util {
 	 *          : key to find the entity
 	 * @return entity
 	 */
-  public static Entity findEntity(Key key) {
+  public static Entity findEntityAndAddCache(Key key) {
 	logger.log(Level.INFO, "Search the entity");
 	try {
 	  Entity entity = getFromCache(key);
+	  
 	  if (entity != null) {
 		return entity;
 	  }
-	  return datastore.get(key);
+	  entity= datastore.get(key);
+	  //se pesquisar uma entidade coloque ela em cache é bom p user mas pode lotar o cache se for 
+	  if (entity!=null) {
+		   addToCache(key, entity);
+	   }
+	  return entity;
+	   
 	} catch (EntityNotFoundException e) {
 	  return null;
 	}
   }
+  
+  public static Entity findEntity(Key key) {
+		logger.log(Level.INFO, "Search the entity");
+		try {
+		  Entity entity = getFromCache(key);
+		  if (entity != null) {
+			return entity;
+		  }
+		  return datastore.get(key);				   
+		} catch (EntityNotFoundException e) {
+		  return null;
+		}
+	  }
 
 	/***
 	 * Search entities based on search criteria
