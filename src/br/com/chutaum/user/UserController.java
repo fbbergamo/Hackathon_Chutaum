@@ -60,6 +60,8 @@ public class UserController {
 		
  		Util.persistEntity(userEntity);
  		Util.persistEntity(poliEntity);
+ 		//TODO: add os ultimos 30 se começar a seguir;
+ 		
 	}
 	
 	public static Boolean isFollowing(User user, Politician poli) {
