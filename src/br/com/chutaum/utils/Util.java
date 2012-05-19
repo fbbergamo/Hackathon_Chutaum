@@ -59,12 +59,14 @@ public class Util {
 	 * @param entity
 	 *          : entity to be persisted
 	 */
-  public static void persistEntity(Entity entity) {
+  
+public  static Key persistEntity(Entity entity) {
     logger.log(Level.INFO, "Saving entity");
+    Key actionKey = null;
     Key key = entity.getKey();
     Transaction txn = datastore.beginTransaction();
     try {
-      datastore.put(entity);
+      actionKey = datastore.put(entity);
 	  txn.commit();
     } finally {
 	  if (txn.isActive()) {
@@ -73,6 +75,7 @@ public class Util {
 		addToCache(key, entity);
 	  }
     }
+    return actionKey;
   }
 
 	/**

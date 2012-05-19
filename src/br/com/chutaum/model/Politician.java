@@ -1,18 +1,43 @@
 package br.com.chutaum.model;
 
+import com.google.appengine.api.datastore.Entity;
+
 
 public class Politician {
-	private int id;
+	private long id;
 	private String name;
 	private String description;
 	private String email;
 	private String telefone;
 	private String party;
+	private String photo;
 	
-	public int getId() {
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
+	public Politician(Entity en) {
+		 	this.setId(en.getKey().getId());
+			this.setName(en.getProperty("Name").toString());
+			//this.setParty(en.getProperty("Party").toString());
+			//this.setEmail(en.getProperty("Email").toString());
+			//this.setDescription(en.getProperty("Description").toString());
+			//this.setTelefone(en.getProperty("Telefone").toString());
+		
+	}
+	
+	public Politician() {
+	
+	}
+	
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -45,5 +70,8 @@ public class Politician {
 	public void setParty(String party) {
 		this.party = party;
 	}
+	
+	
+	
 
 }

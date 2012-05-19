@@ -13,7 +13,7 @@
 	com.google.appengine.api.users.UserService userService = UserServiceFactory.getUserService();
  	 br.com.chutaum.model.User user = UserController.currentUser(session);
  	 Set<String> attributes = new HashSet();
- 	 
+ 	 	
      if (user==null) {
   
     	 %>

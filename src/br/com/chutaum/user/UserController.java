@@ -54,8 +54,6 @@ public class UserController {
 	
 		Entity userEntity = new Entity("UserFollowing", user.getEmail()+poli.getId());
 		userEntity.setProperty("Politician",poli.getId());
-		
-		
 		Entity policton = Util.findEntity(KeyFactory.createKey("Politician", poli.getId()));
 		Entity poliEntity = new Entity("PoliticanFollow",policton.getKey());
 		poliEntity.setProperty("User",user.getEmail());

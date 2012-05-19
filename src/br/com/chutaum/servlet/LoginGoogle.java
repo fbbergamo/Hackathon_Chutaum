@@ -1,8 +1,6 @@
 package br.com.chutaum.servlet;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.chutaum.user.UserController;
 
 import com.google.appengine.api.users.UserServiceFactory;
-import com.google.apphosting.api.UserServicePb.UserService;
+
 
 
 
