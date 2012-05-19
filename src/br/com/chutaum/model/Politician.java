@@ -23,7 +23,8 @@ public class Politician {
 	public Politician(Entity en) {
 		 	this.setId(en.getKey().getId());
 			this.setName(en.getProperty("Name").toString());
-			//this.setParty(en.getProperty("Party").toString());
+			this.setParty(en.getProperty("Party").toString());
+			this.setPhoto(en.getProperty("Photo").toString());
 			//this.setEmail(en.getProperty("Email").toString());
 			//this.setDescription(en.getProperty("Description").toString());
 			//this.setTelefone(en.getProperty("Telefone").toString());

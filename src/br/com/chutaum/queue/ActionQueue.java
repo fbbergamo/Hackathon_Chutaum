@@ -51,15 +51,18 @@ public class ActionQueue  extends HttpServlet {
 				e.printStackTrace();
 			}
 		 	Entity politician = Util.findEntity(KeyFactory.createKey("Politician", action.getIdPolition()));
+		 	Politician poli = new Politician(politician);
+		 	
 	 		Entity entity = new Entity("Action", politician.getKey());
 	 		entity.setProperty("Content",action.getContent());
+	 		entity.setProperty("IdPolitician",poli.getId());
+	 		entity.setProperty("NamePolitician",poli.getName());
+	 		entity.setProperty("Party",poli.getParty());
 	 		entity.setProperty("Date",action.getDate());
 	 		entity.setProperty("DateMs", action.getDateMs());
 	 		entity.setProperty("Kind",action.getKind());
 	 		Key actionKey =	Util.persistEntity(entity);
-	 		
-	 		Politician poli = new Politician(politician);
-	 		
+	 			 		
 	 		try {
 	 			JSONArray array = PoliticianController.politicianFollow(poli);
 		 		for (int i = 0; i < array.length(); i++) {
@@ -73,6 +76,9 @@ public class ActionQueue  extends HttpServlet {
 				 		useraction.setProperty("DateMs", action.getDateMs());
 				 		useraction.setProperty("Kind",action.getKind());
 				 		useraction.setProperty("UniqueActions",actionKey);
+				 		entity.setProperty("IdPolitician",poli.getId());
+				 		entity.setProperty("NamePolitician",poli.getName());
+				 		entity.setProperty("Party",poli.getParty());
 				 		Util.persistEntity(entity); 
 		 		}
 	 		} catch (JSONException e) {

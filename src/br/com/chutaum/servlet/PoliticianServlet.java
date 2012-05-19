@@ -41,7 +41,7 @@ public class PoliticianServlet extends HttpServlet {
     	}
     	if (req.getParameter("vereador")!=null) {
     		Key ancestorKey = KeyFactory.createKey("Politician",Integer.parseInt(req.getParameter("vereador")));
-    		String json = Util.writeJSON(Util.listChildren("Action", ancestorKey, 5, i));
+    		String json = Util.writeJSON(Util.listChildren("Action", ancestorKey, 20, i));
     		
     		try {
     			JSONObject tmp = new JSONObject(json);
@@ -49,9 +49,7 @@ public class PoliticianServlet extends HttpServlet {
 				req.setAttribute("actions", array );
 		    	RequestDispatcher rd = req.getRequestDispatcher("politician.jsp");
 			    rd.forward(req, res);
-			    
-
-					
+			    	
 			} catch (JSONException e1) {
 				// TODO Auto-generated catch block
 				
