@@ -1,6 +1,7 @@
 package br.com.chutaum.queue;
 
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import au.com.bytecode.opencsv.CSVParser;
+import au.com.bytecode.opencsv.CSVReader;
 import br.com.chutaum.json.JSONArray;
 import br.com.chutaum.json.JSONException;
 import br.com.chutaum.json.JSONObject;
@@ -22,6 +25,7 @@ import br.com.chutaum.utils.Util;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.datastore.Text;
 
 public class ActionQueue  extends HttpServlet {
 
@@ -41,7 +45,6 @@ public class ActionQueue  extends HttpServlet {
 		 	action.setContent(input[1]);
 		 	action.setKind(input[2]);
 		 	
-		 			 	
 		 	try {
 		 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");  
 		 		Date date = format.parse(input[3]);
@@ -52,7 +55,8 @@ public class ActionQueue  extends HttpServlet {
 			}
 		 	Entity politician = Util.findEntity(KeyFactory.createKey("Politician", action.getIdPolition()));
 	 		Entity entity = new Entity("Action", politician.getKey());
-	 		entity.setProperty("Content",action.getContent());
+	 		Text text = new Text(action.getContent());
+	 		entity.setProperty("Content", text);
 	 		entity.setProperty("Date",action.getDate());
 	 		entity.setProperty("DateMs", action.getDateMs());
 	 		entity.setProperty("Kind",action.getKind());

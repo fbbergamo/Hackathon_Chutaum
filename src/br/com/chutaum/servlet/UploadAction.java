@@ -1,7 +1,11 @@
 package br.com.chutaum.servlet;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Reader;
+import java.io.StringReader;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -10,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import au.com.bytecode.opencsv.CSVReader;
 import br.com.chutaum.utils.Util;
 
 import com.google.appengine.api.backends.BackendServiceFactory;
@@ -41,26 +46,34 @@ public class UploadAction extends HttpServlet {
 	       
 	        PrintWriter out = res.getWriter();
 	        
-	     
+
+	        StringReader string = new StringReader(new String(blobstoreService.fetchData(blobKey,0,1015807)));
 	        
-	        Scanner data = new Scanner( new String(blobstoreService.fetchData(blobKey,0,1015807)));
-	        	
+	        CSVReader reader=new CSVReader(string,';');
+	       
+	        
 	        if (blobKey == null) {
 	            res.sendRedirect("/");
 	        } else {
-	        	//titulo
-	        	data.nextLine();
-	        	while (data.hasNextLine()) {
-	        		  String line = data.nextLine();
-	        		  com.google.appengine.api.taskqueue.Queue queue = QueueFactory.getQueue("ActionQueue");
-	        		  TaskOptions taskOptions = TaskOptions.Builder.withUrl("/action-queue")
-	        		  	                          .param("action", line)
+			    String[] line;
+			    reader.readNext();
+	    		while((line=reader.readNext())!=null){
+    			StringBuilder stb=new StringBuilder(400);
+		        for(int i=0;i<line.length;i++){
+		        	stb.append(line[i]);
+		        	stb.append(';');
+		            
+		        }
+    			com.google.appengine.api.taskqueue.Queue queue = QueueFactory.getQueue("ActionQueue");
+    			TaskOptions taskOptions = TaskOptions.Builder.withUrl("/action-queue")
+	        		  	                          .param("action", stb.toString())
 	        		  	                          .method(Method.POST)
 	        		  	                          .header("Host", BackendServiceFactory.getBackendService().getBackendAddress("action-backend"));
-	        		  queue.add(taskOptions);
-	        		}
+    			queue.add(taskOptions);
+	    			
+	        	}
+	        	
 	        }
+
 	    }
-
-
 }
