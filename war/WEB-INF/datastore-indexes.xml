@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <datastore-indexes autoGenerate="true">
   <datastore-index kind="Action" ancestor="true">
     <property name="DateMs" direction="asc"/>
   </datastore-index>
-  
 </datastore-indexes>

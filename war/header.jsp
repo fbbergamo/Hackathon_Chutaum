@@ -8,7 +8,7 @@
 
 <div id="header">
 <div class="box-content">
-<div class="logo"><p>Aqui vai o Logo</p></div>
+<div class="logo"><a href="/"><p>Aqui vai o Logo</p></a></div>
 
 <div class="login">  <%
 	com.google.appengine.api.users.UserService userService = UserServiceFactory.getUserService();

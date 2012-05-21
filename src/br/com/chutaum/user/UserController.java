@@ -50,7 +50,7 @@ public class UserController {
     	return Util.writeJSON(Util.listChildren("Actions", ancestorKey,sizepage,offent));
 	}
 	
-	public void followPolitician(User user, Politician poli){
+	public static void followPolitician(User user, Politician poli){
 	
 		Entity userEntity = new Entity("UserFollowing", user.getEmail()+poli.getId());
 		userEntity.setProperty("Politician",poli.getId());
@@ -60,6 +60,27 @@ public class UserController {
 		
  		Util.persistEntity(userEntity);
  		Util.persistEntity(poliEntity);
+ 		Key second = KeyFactory.createKey("SecondTime",  user.getEmail()+poli.getId());
+ 		
+ 		if (Util.findEntity(second)==null) {
+ 			//TODO: add os ultimos 30 se começar a seguir;	
+ 		}
+ 		
+ 		
+	}
+	
+	public static void unFollowPolitician(User user, Politician poli){
+		
+		Entity userEntity = new Entity("UserFollowing", user.getEmail()+poli.getId());
+		
+		//TODO: fazer o delete do politicianfollow;
+		//Entity poliEntity = new Entity("PoliticanFollow",poli.getId());
+		
+		Entity second = new Entity("secondTime", user.getEmail()+poli.getId());
+		Util.persistEntity(second);
+		
+ 		Util.deleteEntity(userEntity.getKey());
+ 		//Util.deleteEntity(poliEntity.getKey());
  		//TODO: add os ultimos 30 se começar a seguir;
  		
 	}
