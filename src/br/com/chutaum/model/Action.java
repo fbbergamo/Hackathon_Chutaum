@@ -2,8 +2,24 @@ package br.com.chutaum.model;
 
 import java.util.Date;
 
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.Text;
+
 public class Action implements java.io.Serializable  {
 	
+	public Action(Entity en) {
+		this.setKey(en.getKey().toString());
+	 	this.setId(en.getKey().getId());
+		this.setContent((Text) en.getProperty("Content"));
+		this.setKind(en.getProperty("Kind").toString());
+		this.setDate((Date) en.getProperty("Date"));
+		this.setDateMs((Long) en.getProperty("DateMs"));
+		this.setIdPolition(Integer.parseInt((en.getProperty("IdPolitician").toString())));
+	}
+	
+	public Action() {}
+	
+	private String Key;
 	private static final long serialVersionUID = 1L;
 	private long id;
 	private Date date;
@@ -11,6 +27,14 @@ public class Action implements java.io.Serializable  {
 	private int idPolition;
 	private String kind;
 	private long dateMs;
+	
+	public String getKey() {
+		return Key;
+	}
+
+	public void setKey(String key) {
+		Key = key;
+	}
 	
 	public long getId() {
 		return id;
@@ -32,6 +56,11 @@ public class Action implements java.io.Serializable  {
 		return content;
 	}
 	
+	public void setContent(Text content) {
+		this.content = content.getValue();
+	}
+	
+	
 	public void setContent(String content) {
 		this.content = content;
 	}
@@ -50,27 +79,6 @@ public class Action implements java.io.Serializable  {
 	
 	public void setKind(String kind) {
 		this.kind = kind;
-	}
-	
-	public String writeJson() {
-		
-		StringBuilder sb = new StringBuilder();
-		    sb.append("{\"data\": [");
-		    
-		    
-		      sb.append("{");
-		   
-		        sb.append("\"IdPolition\" : \"" + this.idPolition + "\",");
-		   
-		        sb.append("\"Content\" : \"" + this.content + "\",");
-		        sb.append("\"kind\" : \"" + this.content + "\",");
-		        sb.append("\"Date\" : \"" + this.date);
-		        
-		  
-		      sb.append("}");
-		      sb.append("]}");	
-			return sb.toString();
-			
 	}
 	
 

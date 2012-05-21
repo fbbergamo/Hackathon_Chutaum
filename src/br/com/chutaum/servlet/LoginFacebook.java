@@ -31,7 +31,7 @@ public class LoginFacebook extends HttpServlet {
 						HttpSession session = req.getSession();
 						UserController.login(jsonObject.getString("email"));
 						session.setAttribute("authenticatedUserName", jsonObject.getString("email"));
-						 res.sendRedirect("/login/");  	
+						 res.sendRedirect("/");  	
 					}
 					else {
 						 res.sendRedirect("/");  	

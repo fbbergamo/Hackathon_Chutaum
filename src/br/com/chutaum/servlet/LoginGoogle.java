@@ -26,7 +26,7 @@ public class LoginGoogle extends HttpServlet {
 			com.google.appengine.api.users.UserService userService = UserServiceFactory.getUserService();
 		     if (userService.isUserLoggedIn()) {
 		    	 UserController.login(userService.getCurrentUser().getEmail());
-		    	 res.sendRedirect("/login/");  	 
+		    	 res.sendRedirect("/");  	 
 		        } else {
 		        	 res.sendRedirect("/");  	
 		        }

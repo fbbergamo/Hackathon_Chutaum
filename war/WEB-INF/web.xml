@@ -72,6 +72,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-class>br.com.chutaum.servlet.PoliticianServlet</servlet-class>
 	</servlet>
 	
+	<servlet-mapping>
+		<servlet-name>ActionServlet</servlet-name>
+		<url-pattern>/actions</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ActionServlet</servlet-name>
+		<servlet-class>br.com.chutaum.servlet.ActionServlet</servlet-class>
+	</servlet>
+	
 	
 	<servlet-mapping>
 		<servlet-name>LoginFacebook</servlet-name>
@@ -87,7 +97,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	
 	  <security-constraint>
         <web-resource-collection>
-            <url-pattern>/upload</url-pattern>
+            <url-pattern>/upload/</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>admin</role-name>

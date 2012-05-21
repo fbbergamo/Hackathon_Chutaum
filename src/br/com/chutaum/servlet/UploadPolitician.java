@@ -27,15 +27,16 @@ public class UploadPolitician extends HttpServlet {
 	        throws ServletException, IOException {
 	    	    Map<String, BlobKey> blobs = blobstoreService.getUploadedBlobs(req);
 		        BlobKey blobKey = blobs.get("myFile");
-		        Scanner data = new Scanner( new String(blobstoreService.fetchData(blobKey,0,1015807)));
+		        Scanner data = new Scanner( new String(blobstoreService.fetchData(blobKey,0,1015807),"UTF8"));
 		        
 		        if (blobKey == null) {
 		            res.sendRedirect("/");
 		        } else {
 		        	//titulo
 		        	data.nextLine();
+		        	
 		        	while (data.hasNextLine()) {
-		        		  String line = data.nextLine();
+		        			String line = data.nextLine();
 		        		  com.google.appengine.api.taskqueue.Queue queue = QueueFactory.getQueue("PoliticianQueue");
 		        		  TaskOptions taskOptions = TaskOptions.Builder.withUrl("/politician-queue")
 		        		  	                          .param("politician", line)

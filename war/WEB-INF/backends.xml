@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <backends>
 	<backend name="action-backend">
-		<class>B1</class>
+		<class>B4</class>
 		<options>
 			<dynamic>true</dynamic>
 			<public>true</public>

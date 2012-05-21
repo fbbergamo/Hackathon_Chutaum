@@ -26,6 +26,10 @@ public class PoliticianController {
 		return null;
 	}
 	
+	public static Iterable<Entity> allPoliticians() {
+		return Util.listEntities("Politician",null,"");
+	}
+	
 
 	public static JSONArray politicianActions(Politician politician, int sizepage, int offent) throws JSONException {
 		Key ancestorKey = KeyFactory.createKey("Politician", politician.getId());
