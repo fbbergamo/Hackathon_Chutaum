@@ -8,8 +8,12 @@
 <%@ page import="java.net.*" %>
 
 <html>
+
 <title>Linha do Tempo</title>
 <body>
+<script type="text/JavaScript" src="/script/jquery.min.js"></script> 
+<script type="text/JavaScript" src="/script/follow.js"></script> 
+
 	<jsp:include page="header.jsp" />
 <div class="box-content">
 	<h1>Siga os Vereadores de sua preferência</h1>
@@ -22,7 +26,11 @@
 		<div class="list-politician">
 			<a href="/politician?vereador=<%=politician.getId() %>">
 			<img src="<%= politician.getPhoto() %>" />
-			<small><%= politician.getName() %></small></a>
+			<p class="poli-name"><%= politician.getName() %></p></a>
+			<small>
+			<% request.setAttribute("politician", politician); %> 
+			<jsp:include page="follow.jsp" />
+			</small>
 		</div>
 		<% 
 	}
