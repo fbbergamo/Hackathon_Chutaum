@@ -10,13 +10,13 @@
 <html>
 
 <title>Linha do Tempo</title>
+
 <body>
-<script type="text/JavaScript" src="/script/jquery.min.js"></script> 
-<script type="text/JavaScript" src="/script/follow.js"></script> 
+
 
 	<jsp:include page="header.jsp" />
 <div class="box-content">
-	<h1>Siga os Vereadores de sua preferência</h1>
+	<h1>Siga os vereadores de São Paulo</h1>
 	<%	
 	Iterable<Entity> politicians;
 	politicians = PoliticianController.allPoliticians();

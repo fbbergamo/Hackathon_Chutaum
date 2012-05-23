@@ -10,11 +10,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script type="text/JavaScript" src="/script/jquery.min.js"></script> 
-	<script type="text/JavaScript" src="/script/jquery.endless-scroll.js"></script> 
-	<script src="//connect.facebook.net/en_US/all.js"></script>
-	<link rel="stylesheet" type="text/css" href="/css/TimeLine.css?v=2" />
-	<script type="text/JavaScript" src="/script/load-actions.js?v=3"></script> 
+	<jsp:include page="header.jsp" />
+
 	
 </head>
 
@@ -44,15 +41,20 @@
    }(document));
   
 </script>
-<jsp:include page="header.jsp" />
+
 	<div class="politician-profile">
 		<% Politician poli = (Politician) request.getAttribute("politician"); 
 			String URL = (String) request.getAttribute("URL");
-			
-		
 		%>
 		<img  src=<%= poli.getPhoto() %> />
-		<div class="politician-info"> <h2><%= poli.getName() %></h2> <p><%= poli.getParty() %></p> </div>
+		<div class="politician-info"> <h2><%= poli.getName() %></h2> <p><%= poli.getParty() %></p> 
+		
+		<div class="politician-follow-profile"><small><% request.setAttribute("politician", poli); %> 
+		<jsp:include page="follow.jsp" /></small>
+		</div>
+		
+		</div>
+		
 	</div>
 	
 	

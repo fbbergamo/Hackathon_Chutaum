@@ -15,6 +15,7 @@ public class Action implements java.io.Serializable  {
 		this.setDate((Date) en.getProperty("Date"));
 		this.setDateMs((Long) en.getProperty("DateMs"));
 		this.setIdPolition(Integer.parseInt((en.getProperty("IdPolitician").toString())));
+		this.setNamePolitician(en.getProperty("NamePolitician").toString());
 	}
 	
 	public Action() {}
@@ -27,7 +28,16 @@ public class Action implements java.io.Serializable  {
 	private int idPolition;
 	private String kind;
 	private long dateMs;
+	private String namePolitician;
 	
+	public String getNamePolitician() {
+		return namePolitician;
+	}
+
+	public void setNamePolitician(String namePolitician) {
+		this.namePolitician = namePolitician;
+	}
+
 	public String getKey() {
 		return Key;
 	}

@@ -4,8 +4,13 @@
 <%@page import="java.util.Set"%>
 <%@ page import="java.net.*" %>
 
+<script type="text/JavaScript" src="/script/jquery.min.js"></script> 
+<script type="text/JavaScript" src="/script/follow.js"></script> 
+<script type="text/JavaScript" src="/script/jquery.endless-scroll.js"></script> 
+<link rel="stylesheet" type="text/css" href="/css/TimeLine.css?v=2" />
+<script type="text/JavaScript" src="/script/load-actions.js?v=3"></script> 
+<script src="//connect.facebook.net/en_US/all.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/master.css?v=1" />
-
 <div id="header">
 <div class="box-content">
 <div class="logo"><a href="/"><p>Aqui vai o Logo</p></a></div>

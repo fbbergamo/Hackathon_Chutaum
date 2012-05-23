@@ -208,10 +208,8 @@ public  static Key persistEntity(Entity entity) {
 		logger.log(Level.INFO, "Search entities based on parent");
 		Query query = new Query(kind);
 		query.setAncestor(ancestor);
-		FetchOptions fetchOptions = FetchOptions.Builder.withLimit(sizePage);
-		query.addSort("__key__",SortDirection.DESCENDING);
 		query.addSort("DateMs",SortDirection.DESCENDING);
-		query.addFilter(Entity.KEY_RESERVED_PROPERTY, FilterOperator.GREATER_THAN, ancestor);
+		FetchOptions fetchOptions = FetchOptions.Builder.withLimit(sizePage);
 		PreparedQuery pq = datastore.prepare(query);
 		return pq.asQueryResultIterable(fetchOptions.offset(offset));
   }

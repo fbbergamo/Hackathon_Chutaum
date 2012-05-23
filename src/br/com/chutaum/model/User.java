@@ -3,8 +3,19 @@ package br.com.chutaum.model;
 import java.util.Date;
 import java.util.List;
 
+import com.google.appengine.api.datastore.Entity;
+
 //colocar atributos dos usuarios email, nomes, list de politicos q ela segue 
 public class User {
+	
+	public User (Entity en) {
+		this.setEmail(en.getKey().getName());
+		this.setRegistrationDate((Date) en.getProperty("registrationDate"));
+	}
+	
+	public User () {}
+	
+	
 	private String nome;
 	private String email;
 	private List<Politician> folling;

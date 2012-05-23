@@ -36,12 +36,9 @@ public class PoliticianController {
     	return new JSONArray(Util.listChildren("Actions", ancestorKey,sizepage,offent));	
 	}
 	
-	public static JSONArray  politicianFollow(Politician politician) throws JSONException {
+	public static Iterable<Entity>  politicianFollow(Politician politician) throws JSONException {
 		Key ancestorKey = KeyFactory.createKey("Politician", politician.getId());
-    	String json = Util.writeJSON(Util.listChildren("PoliticanFollow", ancestorKey));
-    	JSONObject tmp = new JSONObject(json);
-		JSONArray array = tmp.getJSONArray("data");
-    	return array;
+    	 return Util.listChildren("PoliticanFollow", ancestorKey);
 	}
 	
 	

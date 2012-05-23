@@ -19,6 +19,7 @@ import br.com.chutaum.json.JSONException;
 import br.com.chutaum.json.JSONObject;
 import br.com.chutaum.model.Action;
 import br.com.chutaum.model.Politician;
+import br.com.chutaum.model.User;
 import br.com.chutaum.politician.PoliticianController;
 import br.com.chutaum.utils.Util;
 
@@ -78,12 +79,12 @@ public class ActionQueue  extends HttpServlet {
 			 			 		
 			 		try {
 			 			
-			 			JSONArray array = PoliticianController.politicianFollow(poli);
-				 		for (int i = 0; i < array.length(); i++) {
+			 			Iterable<Entity> array = PoliticianController.politicianFollow(poli);
+				 		for (Entity en : array) {
 				 			
-				 			JSONObject json = array.getJSONObject(i);
+				 			
 				 			Entity useraction = createUserAction(action,
-										poli, actionKey, json);
+										poli, actionKey, en);
 						 		
 				 			Util.persistEntity(useraction); 
 				 		
@@ -97,21 +98,19 @@ public class ActionQueue  extends HttpServlet {
 		}
     }
 
-	private Entity createUserAction(Action action, Politician poli,
-			Key actionKey, JSONObject json) throws JSONException {
-		String email = null;
-		email = json.getString("ID");
-		Entity user = Util.findEntity(KeyFactory.createKey("User", email));
-		Entity useraction = new Entity("UserAction", user.getKey());
-		useraction.setProperty("Content",action.getContent());
-		useraction.setProperty("Date",action.getDate());
-		useraction.setProperty("DateMs", action.getDateMs());
-		useraction.setProperty("Kind",action.getKind());
-		useraction.setProperty("UniqueActions",actionKey);
-		useraction.setProperty("IdPolitician",poli.getId());
-		useraction.setProperty("NamePolitician",poli.getName());
-		useraction.setProperty("Party",poli.getParty());
-		useraction.setProperty("Photo",poli.getPhoto());
+	private Entity createUserAction(Action action, Politician poli, Key actionKey, Entity en) throws JSONException {
+			
+			Entity useraction = new Entity("UserAction", en.getProperty("User").toString());
+			Text text = new Text(action.getContent());
+			useraction.setProperty("Content", text);
+			useraction.setProperty("Date",action.getDate());
+			useraction.setProperty("DateMs", action.getDateMs());
+			useraction.setProperty("Kind",action.getKind());
+			useraction.setProperty("UniqueActions",actionKey);
+			useraction.setProperty("IdPolitician",poli.getId());
+			useraction.setProperty("NamePolitician",poli.getName());
+			useraction.setProperty("Party",poli.getParty());
+			useraction.setProperty("Photo",poli.getPhoto());
 		return useraction;
 	}
 
@@ -130,13 +129,11 @@ public class ActionQueue  extends HttpServlet {
 	}
 
 	private Action createActionObject(StringBuilder stb) {
+		
 		String [] input = new String(stb).split(";"); 
-		 
 		Action action = new Action();
 		action.setIdPolition(Integer.parseInt(input[0]));
 		action.setContent(input[1]);
-		action.setKind(input[3]);
-		
 		try {
 			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");  
 			Date date = format.parse(input[2]);
@@ -145,6 +142,8 @@ public class ActionQueue  extends HttpServlet {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		action.setKind(input[3]);
 		return action;
 	}
+	
 }

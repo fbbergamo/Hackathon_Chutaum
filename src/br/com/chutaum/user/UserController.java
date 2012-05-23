@@ -63,7 +63,9 @@ public class UserController {
  		Key second = KeyFactory.createKey("SecondTime",  user.getEmail()+poli.getId());
  		
  		if (Util.findEntity(second)==null) {
+ 			
  			//TODO: add os ultimos 30 se começar a seguir;	
+ 			
  		}
  		
  		
