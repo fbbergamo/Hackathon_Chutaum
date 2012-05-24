@@ -3,9 +3,20 @@ package br.com.chutaum.user;
 import java.util.Date;
 
 import javax.servlet.http.HttpSession;
+
+import com.google.appengine.api.backends.BackendServiceFactory;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.taskqueue.QueueFactory;
+import com.google.appengine.api.taskqueue.TaskOptions;
+import com.google.appengine.api.taskqueue.TaskOptions.Method;
 import com.google.appengine.api.users.UserServiceFactory;
 
 import br.com.chutaum.model.Politician;
@@ -18,9 +29,7 @@ public class UserController {
 		//busca na base e faz cache no servidor. 
 		Entity en = Util.findEntityAndAddCache(KeyFactory.createKey("User", email));
 		if (en!=null) {
-			User user = new User();
-			user.setEmail(en.getKey().getName());
-			//user.setRegistrationDate(en.getProperty("RegistrationDate"));
+			User user = new User(en);
 			return user;  
 		}
 		return null;
@@ -64,7 +73,13 @@ public class UserController {
  		
  		if (Util.findEntity(second)==null) {
  			
- 			//TODO: add os ultimos 30 se começar a seguir;	
+ 			com.google.appengine.api.taskqueue.Queue queue = QueueFactory.getQueue("UserActionsQueue");
+			TaskOptions taskOptions = TaskOptions.Builder.withUrl("/user-actions-queue")
+        		  	                          .param("user",user.getEmail() )
+        		  	                          .param("poli", Long.toString(poli.getId()))
+        		  	                          .method(Method.POST)
+        		  	                          .header("Host", BackendServiceFactory.getBackendService().getBackendAddress("action-backend"));
+			queue.add(taskOptions);	   	
  			
  		}
  		
@@ -73,15 +88,29 @@ public class UserController {
 	
 	public static void unFollowPolitician(User user, Politician poli){
 		
-		Entity userEntity = new Entity("UserFollowing", user.getEmail()+poli.getId());
 		
+		Key follow = KeyFactory.createKey("UserFollowing",  user.getEmail()+poli.getId());
+		Key politi = KeyFactory.createKey("Politician", poli.getId());
+		Util.deleteEntity(follow);
+		
+		Query query = new Query("PoliticanFollow");
+		query.setAncestor(politi);
+		query.addFilter("User", FilterOperator.EQUAL,  user.getEmail());
+
+		PreparedQuery pq = DatastoreServiceFactory.getDatastoreService().prepare(query);
+		 Iterable<Entity> todelete = pq.asQueryResultIterable();
+		 for (Entity en : todelete) {
+			 Util.deleteEntity(en.getKey());
+		 }
 		//TODO: fazer o delete do politicianfollow;
 		//Entity poliEntity = new Entity("PoliticanFollow",poli.getId());
+	  
 		
-		Entity second = new Entity("secondTime", user.getEmail()+poli.getId());
+		
+		Entity second = new Entity("SecondTime", user.getEmail()+poli.getId());
 		Util.persistEntity(second);
 		
- 		Util.deleteEntity(userEntity.getKey());
+ 		
  		//Util.deleteEntity(poliEntity.getKey());
  		//TODO: add os ultimos 30 se começar a seguir;
  		

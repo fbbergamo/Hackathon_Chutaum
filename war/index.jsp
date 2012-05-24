@@ -6,17 +6,22 @@
 <%@page import="java.util.HashSet"%>
 <%@page import="java.util.Set"%>
 <%@ page import="java.net.*" %>
-
+<!DOCTYPE html>
 <html>
 
-<title>Linha do Tempo</title>
 
+<head>
+
+<jsp:include page="header.jsp" />
+
+</head>
 <body>
 
 
-	<jsp:include page="header.jsp" />
+	
 <div class="box-content">
 	<h1>Siga os vereadores de São Paulo</h1>
+	<div class="fb-like" data-href="http://chutaum.appspot.com/" data-send="true" data-layout="box_count" data-width="450" data-show-faces="true" data-font="verdana"></div>
 	<%	
 	Iterable<Entity> politicians;
 	politicians = PoliticianController.allPoliticians();

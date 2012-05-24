@@ -40,6 +40,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<url-pattern>/politician-queue</url-pattern>
 	</servlet-mapping>
 	
+		<servlet>
+		<servlet-name>UserActionsQueue</servlet-name>
+		<servlet-class>br.com.chutaum.queue.UserActionsQueue</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserActionsQueue</servlet-name>
+		<url-pattern>/user-actions-queue</url-pattern>
+	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>LoginGoogle</servlet-name>
 		<servlet-class>br.com.chutaum.servlet.LoginGoogle</servlet-class>
@@ -112,6 +121,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-class>br.com.chutaum.servlet.UnFollowServlet</servlet-class>
 	</servlet>
 	
+
+			<servlet-mapping>
+		<servlet-name>UserServlet</servlet-name>
+		<url-pattern>/cidadao</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>UserServlet</servlet-name>
+		<servlet-class>br.com.chutaum.servlet.UserServlet</servlet-class>
+	</servlet>
 
 	  <security-constraint>
         <web-resource-collection>

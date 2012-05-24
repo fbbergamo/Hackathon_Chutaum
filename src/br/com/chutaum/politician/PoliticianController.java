@@ -17,8 +17,8 @@ import com.google.appengine.api.datastore.KeyFactory;
 public class PoliticianController {
 	
 	public static Politician findPolitician(int id) {
-		//busca na base e faz cache no servidor. 
-		Entity en = Util.findEntityAndAddCache(KeyFactory.createKey("Politician", id));
+	
+		Entity en = Util.findEntity(KeyFactory.createKey("Politician", id));
 		if (en!=null) {
 			Politician politician = new Politician(en);
 			return politician;  

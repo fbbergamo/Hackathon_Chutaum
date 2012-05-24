@@ -21,6 +21,7 @@ import br.com.chutaum.model.Action;
 import br.com.chutaum.model.Politician;
 import br.com.chutaum.model.User;
 import br.com.chutaum.politician.PoliticianController;
+import br.com.chutaum.user.UserController;
 import br.com.chutaum.utils.Util;
 
 import com.google.appengine.api.blobstore.BlobKey;
@@ -99,8 +100,9 @@ public class ActionQueue  extends HttpServlet {
     }
 
 	private Entity createUserAction(Action action, Politician poli, Key actionKey, Entity en) throws JSONException {
-			
-			Entity useraction = new Entity("UserAction", en.getProperty("User").toString());
+		
+			Entity user = Util.findEntity(KeyFactory.createKey("User", en.getProperty("User").toString()));
+			Entity useraction = new Entity("UserAction", user.getKey());
 			Text text = new Text(action.getContent());
 			useraction.setProperty("Content", text);
 			useraction.setProperty("Date",action.getDate());

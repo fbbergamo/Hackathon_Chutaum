@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<jsp:include page="header.jsp" />
 
 	
@@ -17,42 +18,23 @@
 
 <body>
  
-	<div id="fb-root"></div>
-	<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '377536698931807', // App ID
-      status     : true, // check login status
-      cookie     : true, // enable cookies to allow the server to access the session
-      xfbml      : true  // parse XFBML
-    });
-
-    // Additional initialization code here
-  };
-
-  // Load the SDK Asynchronously
-  (function(d){
-     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement('script'); js.id = id; js.async = true;
-     js.src = "//connect.facebook.net/pt_BR/all.js";
-     ref.parentNode.insertBefore(js, ref);
-     FB.Canvas.setAutoResize();
-   }(document));
-  
-</script>
 
 	<div class="politician-profile">
 		<% Politician poli = (Politician) request.getAttribute("politician"); 
 			String URL = (String) request.getAttribute("URL");
 		%>
+		
 		<img  src=<%= poli.getPhoto() %> />
 		<div class="politician-info"> <h2><%= poli.getName() %></h2> <p><%= poli.getParty() %></p> 
+
 		
-		<div class="politician-follow-profile"><small><% request.setAttribute("politician", poli); %> 
+		<div class="politician-follow-profile"><small><% request.setAttribute("politician", poli); %>
+		
 		<jsp:include page="follow.jsp" /></small>
-		</div>
 		
+		</div>
+		</br>
+		<div class="fb-like" data-href="http://chutaum.appspot.com/?vereador=<%= poli.getId() %>" data-send="true" data-layout="button_count"  data-width="200" data-show-faces="false" data-font="verdana"></div>
 		</div>
 		
 	</div>
