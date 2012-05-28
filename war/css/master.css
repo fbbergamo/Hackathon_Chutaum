@@ -1,0 +1,128 @@
+
+
+body {
+	font-family: Verdana;
+	background-color: #e7ebf2;
+	margin: 0 auto;
+	font-size: 12px;
+}
+
+.follow {
+	display: inline-block;
+	padding: 5px 11px;
+	background: url(/images/grandient.png) left repeat;
+	color: white;
+	text-decoration: none;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	margin-left: 12px;
+}
+
+#header {
+	  width:100%;
+	  height: 60px; 
+	  background-color: #1D4088;
+	  margin-bottom: 20px;
+}
+
+.box-content {
+	  width:1000px;
+	margin: 0 auto;
+}
+
+
+.box-content h1{
+	text-align: center;
+	color: darkSlateBlue;
+}
+
+
+#header .logo a {
+	float: left;
+	font-size:20px;
+	color: white;
+	text-decoration: none;
+	margin-top:20px;
+	font-weight: bold;
+}
+
+#header .login {
+	margin-right: 70px;
+	margin-top: 20px;
+	float: right;
+}
+
+#header .login .login-user a{
+	float: right;
+}
+
+
+#header .login a  {
+	float: left;
+	margin:  0 10px;
+	color: white;
+}
+
+#header .login p  {
+	float: left;
+	text-align: center;
+	color: white;
+}
+
+#header .login span  {
+
+	text-align: center;
+	color: white;
+}
+
+#header .login a img {
+	width: 30px;
+	
+}
+
+
+#header .login .time-user  {
+	margin-right: 200px;
+	margin-left: 80px;	
+	}
+	
+	
+#header .login .time-user  {
+	margin-right: 200px;
+	margin-left: 80px;	
+	}
+
+.list-politician {
+	float: left;
+	width: 140px;
+	height: 90px;
+	margin: 30px auto;
+	width: 142px;
+	height: 90px;
+	margin: 50px auto;
+}
+
+
+
+.list-politician  img {
+	width: 80px;
+	height: 80px;
+}
+
+.list-politician .poli-name {
+	margin-top: 5px;
+	display: block;
+	width: 100px;
+	overflow: hidden;
+	height: 15px;
+	color: #24271E;
+}
+
+.list-politician  {
+text-decoration: none;
+}
+
+.list-politician  a small{
+	color: black;
+}
+	

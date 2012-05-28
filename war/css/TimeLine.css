@@ -1,0 +1,78 @@
+
+
+
+.politician-profile {
+	margin:0 auto; width:840px;height:150px;border:1px solid #c3ccdf; border-bottom:3px solid #c3ccdf; border-radius:2px; background-color:#FFF; padding:10px;
+}
+
+.politician-profile img {
+	width: 100px; 
+	float: left;
+	margin-top: 15px;
+}
+
+.politician-profile .politician-info {
+	margin-left: 50px;  
+	float: left;
+}
+
+time,.time{
+	position: relative;
+    font-size: 11px; color:gray; border-bottom: 1px solid #E7EBF2; min-width:350px; height:35px; padding-bottom: 5px;
+}
+
+#timeline{
+    width:853px; list-style-type: none; background: url(/images/timeline.png) top center repeat-y; margin: 0 auto; padding:5px 20px; margin-bottom:10px;
+}
+
+#timeline li{
+    width:401px; -moz-border-radius:2px; border-radius:2px; webkit-border-radius:2px; border:1px solid #c3ccdf; padding:5px;background-color:#FFF;
+}
+
+#timeline li .time img{
+	position: absolute;
+	left:0;
+	top:0;
+   width : 30px;
+   float: left;
+   margin-right: 15px; 
+}
+
+#timeline li .time p{
+		position: absolute;
+	left:45px;
+	top:0;
+}
+
+#timeline .month {
+	clear: both;
+	margin: 30px auto;
+	text-align: center;
+	background:#A9B5D3;
+	font-size: 20px;
+	padding: 15px;
+	color: white;
+	-webkit-border-radius: 3px;
+	width: 170px;
+}
+
+
+#timeline li:nth-of-type(odd){
+    clear: both;float:right; 
+}
+
+
+#timeline li:nth-of-type(odd), #timeline li:nth-of-type(even){
+    margin:-10px 0 20px 0;
+}
+#timeline li:nth-of-type(even) .corner{
+	position:absolute; display:block; margin-left:406px;width:20px;	height:15px;background:url(/images/right.png);
+}
+#timeline li:nth-of-type(odd) .corner{
+	position:absolute;display:block;margin-left:-25px;width:20px;height:15px;background:url(/images/left.png);
+}
+
+.fb-comments {
+	margin: 4px auto;
+	}
+}
