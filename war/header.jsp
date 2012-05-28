@@ -70,7 +70,9 @@
     	 <p>Login / Cadastro: </p>
    <a href="https://www.facebook.com/dialog/oauth?client_id=424259360931150&redirect_uri=http://<%= request.getServerName() %>/login/facebook.html&scope=email,user_birthday&response_type=token"><img src="/images/facebook.png" /></a>
    <a href="<%=userService.createLoginURL("/login/login-google","Yahoo","yahoo.com",attributes) %>"><img src="/images/yahoo.png" /> </a>
-    <a href="<%=userService.createLoginURL("/login/login-google") %>"><img src="/images/google.png" /></a><p>
+    <a href="<%=userService.createLoginURL("/login/login-google") %>"><img src="/images/google.png" /></a>
+    <img  src="https://developers.google.com/appengine/images/appengine-noborder-120x30.gif" 
+alt="Powered by Google App Engine" />
    <% } else { %>
    
    <a href="/">Home</a> <a href="/cidadao">Meus Vereadores</a>

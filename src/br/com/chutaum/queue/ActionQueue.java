@@ -49,7 +49,6 @@ public class ActionQueue  extends HttpServlet {
 		
 		
 		BlobKey blobKey = new BlobKey(blobKeyString);
-		
 		StringReader string = new StringReader(new String(blobstoreService.fetchData(blobKey,0,1015807),"UTF8"));
         
         CSVReader reader=new CSVReader(string,';');

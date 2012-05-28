@@ -21,7 +21,10 @@
 	
 <div class="box-content">
 	<h1>Siga os vereadores de São Paulo</h1>
+	<div class="sub-header">
 	<div class="fb-like" data-href="http://chutaum.appspot.com/" data-send="true" data-layout="box_count" data-width="450" data-show-faces="true" data-font="verdana"></div>
+	
+	</div>
 	<%	
 	Iterable<Entity> politicians;
 	politicians = PoliticianController.allPoliticians();
@@ -37,6 +40,8 @@
 			<jsp:include page="follow.jsp" />
 			</small>
 		</div>
+
+		
 		<% 
 	}
 	 com.google.appengine.api.users.UserService userService = UserServiceFactory.getUserService();
@@ -57,7 +62,13 @@
      <% 
      }
      %>
+      	<p style="
+    float: left;
+    margin-top: 40px;
+">Contato:  harnbb@gmail.com / hitoshi@pop.com.br </p>	
     </div> 
+  
 </body>
+
 </html>
 
