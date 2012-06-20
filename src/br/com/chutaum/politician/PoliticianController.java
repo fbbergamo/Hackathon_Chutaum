@@ -32,12 +32,12 @@ public class PoliticianController {
 	}
 	
 
-	public static JSONArray politicianActions(Politician politician, int sizepage, int offent) throws JSONException {
+	public static Iterable<Entity>  politicianActions(Politician politician, int sizepage, int offent){
 		Key ancestorKey = KeyFactory.createKey("Politician", politician.getId());
-    	return new JSONArray(Util.listChildren(Entitys.PoliticianAction, ancestorKey,sizepage,offent));	
+    	return Util.listChildren(Entitys.PoliticianAction, ancestorKey, sizepage, offent);	
 	}
 	
-	public static Iterable<Entity>  politicianFollow(Politician politician) throws JSONException {
+	public static Iterable<Entity>  politicianFollow(Politician politician) {
 		Key ancestorKey = KeyFactory.createKey("Politician", politician.getId());
     	 return Util.listChildren("PoliticanFollow", ancestorKey);
 	}

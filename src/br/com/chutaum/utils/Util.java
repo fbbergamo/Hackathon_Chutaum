@@ -133,7 +133,7 @@ public  static Key persistEntity(Entity entity) {
 		return entity;
 	  }
 	  entity= datastore.get(key);
-	  //se pesquisar uma entidade coloque ela em cache é bom p user mas pode lotar o cache se for 
+	  //se pesquisar uma entidade coloque ela em cache ï¿½ bom p user mas pode lotar o cache se for 
 	  if (entity!=null) {
 		   addToCache(key, entity);
 	   }

@@ -4,31 +4,32 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="com.google.appengine.api.datastore.Entity"%>
-<%@page import=" java.util.Calendar"%>
-<%@page import=" java.util.Locale"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.Locale"%>
 
 
-	<% 
+	<%
 		Politician poli = (Politician) request.getAttribute("politician"); 
 		Iterable<Entity> array = (Iterable<Entity>) request.getAttribute("actions");
 		String URL = (String) request.getAttribute("URL");
 		if (array!=null){
-			Locale local = new Locale("pt","BR");  %> 
+			Locale local = new Locale("pt","BR");
+	%> 
 			<div class="url" data-fetch-url="<%=URL%>"></div> 
 			<%
-			SimpleDateFormat monthformat = new SimpleDateFormat("MMMM",local);   
-			SimpleDateFormat format = new SimpleDateFormat("dd/MM"); 
-			SimpleDateFormat currentMonth = new SimpleDateFormat("M");
-			SimpleDateFormat year = new SimpleDateFormat("yyyy");
-			Calendar calendar;
-			int month = 0;
-			for (Entity result : array) {
-				
-				Action action = new Action(result);
-				calendar = Calendar.getInstance();
-				calendar.setTimeInMillis(action.getDateMs());
-				if (month!=Integer.parseInt(currentMonth.format(calendar.getTime()))) {
-					%>
+ 				SimpleDateFormat monthformat = new SimpleDateFormat("MMMM",local);   
+ 			 				SimpleDateFormat format = new SimpleDateFormat("dd/MM"); 
+ 			 				SimpleDateFormat currentMonth = new SimpleDateFormat("M");
+ 			 				SimpleDateFormat year = new SimpleDateFormat("yyyy");
+ 			 				Calendar calendar;
+ 			 				int month = 0;
+ 			 				for (Entity result : array) {
+ 			 					
+ 			 					Action action = new Action(result);
+ 			 					calendar = Calendar.getInstance();
+ 			 					calendar.setTimeInMillis(action.getDateMs());
+ 			 					if (month!=Integer.parseInt(currentMonth.format(calendar.getTime()))) {
+ 			%>
 					<p class="month"><%= monthformat.format(calendar.getTime()) +" "+ year.format(calendar.getTime()) %></p>
 					<p></p>
 					<% 

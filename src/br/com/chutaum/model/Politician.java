@@ -35,6 +35,10 @@ public class Politician {
 	
 	}
 	
+	public Politician(Integer id) {
+		this.setId(id);
+	}
+	
 	public long getId() {
 		return id;
 	}

@@ -1,41 +1,41 @@
-1.a	Introduï¿½ï¿½o
-O software descrito neste documento consiste em uma aplicaï¿½ï¿½o web desenvolvida com o intuito de utilizar dados pï¿½blicos, fornecidos pela Cï¿½mara Municipal de Sï¿½o Paulo, e transformï¿½-los em informaï¿½ï¿½o ï¿½til ï¿½ populaï¿½ï¿½o. 
-De uma forma interativa, esses dados serï¿½o apresentados atravï¿½s da rede e estarï¿½o disponï¿½veis para a consulta de qualquer cidadï¿½o com acesso ï¿½ internet. O aplicativo participa da 1ï¿½ Maratona Hacker da Cï¿½mara Municipal de Sï¿½o Paulo, que tem por objetivo ampliar o programa de dados abertos do parlamento.
-O sistema pode ser acessado provisoriamente pelo link http://chutaum.appspot.com/ e, posteriormente, assim que o domï¿½nio estiver disponï¿½vel, pelo link http://vereadores.org/. 
+1.	Introdução
+O software descrito neste documento consiste em uma aplicação web desenvolvida com o intuito de utilizar dados públicos, fornecidos pela Câmara Municipal de São Paulo, e transformá-los em informação útil à população. 
+De uma forma interativa, esses dados serão apresentados através da rede e estarão disponíveis para a consulta de qualquer cidadão com acesso à internet. O aplicativo participa da 1ª Maratona Hacker da Câmara Municipal de São Paulo, que tem por objetivo ampliar o programa de dados abertos do parlamento.
+O sistema pode ser acessado provisoriamente pelo link http://chutaum.appspot.com/ e, posteriormente, assim que o domínio estiver disponível, pelo link http://vereadores.org/. 
 
-2.	Descriï¿½ï¿½o
-	O site vereadores.org utiliza dados abertos fornecidos pela Cï¿½mara Municipal de Sï¿½o Paulo para dar maior visibilidade e clareza a esse conteï¿½do. 
-Com o objetivo de prover ï¿½ populaï¿½ï¿½o uma maneira rï¿½pida e interativa de acesso a informaï¿½ï¿½es referentes aos atuais vereadores do municï¿½pio, o site organiza, em formato de linha do tempo, a participaï¿½ï¿½o de cada polï¿½tico nas sessï¿½es plenï¿½rias ordinï¿½rias e extraordinï¿½rias, assim como suas propostas de projetos. 
-Dessa forma, todo cidadï¿½o consegue acompanhar as aï¿½ï¿½es de seus representantes polï¿½ticos e avaliar o seu trabalho.
-Ao usuï¿½rio do site, ï¿½ possï¿½vel cadastrar um e-mail pessoal e escolher de quais vereadores desejam receber as informaï¿½ï¿½es em sua linha do tempo, tornando mais prï¿½tico o acompanhamento de um polï¿½tico especï¿½fico.
-A ferramenta realiza o envio das aï¿½ï¿½es praticadas pelos polï¿½ticos, como criaï¿½ï¿½o de PL, votaï¿½ï¿½es e gastos do gabinete. As informaï¿½ï¿½es sï¿½o enviadas por meio de planilhas CSV padronizadas, em uma pï¿½gina na qual somente os administradores do aplicativo possuem acesso.  
+2.	Descrição
+	O site vereadores.org utiliza dados abertos fornecidos pela Câmara Municipal de São Paulo para dar maior visibilidade e clareza a esse conteúdo. 
+Com o objetivo de prover à população uma maneira rápida e interativa de acesso a informações referentes aos atuais vereadores do município, o site organiza, em formato de linha do tempo, a participação de cada político nas sessões plenárias ordinárias e extraordinárias, assim como suas propostas de projetos. 
+Dessa forma, todo cidadão consegue acompanhar as ações de seus representantes políticos e avaliar o seu trabalho.
+Ao usuário do site, é possível cadastrar um e-mail pessoal e escolher de quais vereadores desejam receber as informações em sua linha do tempo, tornando mais prático o acompanhamento de um político específico.
+A ferramenta realiza o envio das ações praticadas pelos políticos, como criação de PL, votações e gastos do gabinete. As informações são enviadas por meio de planilhas CSV padronizadas, em uma página na qual somente os administradores do aplicativo possuem acesso.  
 
-3.	Documentaï¿½ï¿½o tï¿½cnica
+3.	Documentação técnica
 
 1.	Tecnologias utilizadas
-Para o desenvolvimento, foi utilizada a linguagem Java com pï¿½ginas JSP. O sistema foi construï¿½do para a plataforma Google APP Engine, que possui uma infraestrutura favorï¿½vel a sistemas escalï¿½veis com disponibilidade de informaï¿½ï¿½es.  A plataforma possui diversas ferramentas que auxiliam o desenvolvimento de sistemas web, como um sistema de controle de versï¿½es, deploy padronizado e pagamento por real utilizaï¿½ï¿½o. 
-O sistema utiliza base de dados NoSQL, facilitando a recuperaï¿½ï¿½o dos dados.
-Alï¿½m disso, utiliza um esquema de fila de tarefas, de modo que algumas tarefas sejam executadas em outras instï¿½ncias de serviï¿½o. 
-O Google APP engine possui sua versï¿½o gratuita.
+Para o desenvolvimento, foi utilizada a linguagem Java com páginas JSP. O sistema foi construído para a plataforma Google APP Engine, que possui uma infraestrutura favorável a sistemas escaláveis com disponibilidade de informações.  A plataforma possui diversas ferramentas que auxiliam o desenvolvimento de sistemas web, como um sistema de controle de versões, deploy padronizado e pagamento por real utilização. 
+O sistema utiliza base de dados NoSQL, facilitando a recuperação dos dados.
+Além disso, utiliza um esquema de fila de tarefas, de modo que algumas tarefas sejam executadas em outras instâncias de serviço. 
+O Google APP engine possui sua versão gratuita.
 
-2.	Cï¿½digo Fonte
-O cï¿½digo fonte estï¿½ dividido em trï¿½s categorias de classes: Servlet, controle de regras de negï¿½cio e conexï¿½o com o banco de dados. O sistema tambï¿½m possui os arquivos de configuraï¿½ï¿½es do GAE localizados na pasta ï¿½WAR/WEB-INFï¿½:
+2.	Código Fonte
+O código fonte está dividido em três categorias de classes: Servlet, controle de regras de negócio e conexão com o banco de dados. O sistema também possui os arquivos de configurações do GAE localizados na pasta “WAR/WEB-INF”:
 
-Todo o cï¿½digo fonte estarï¿½ disponï¿½vel no repositï¿½rio do GIT.
+Todo o código fonte estará disponível no repositório do GIT.
 Separamos o sistema em duas planilhas CSV:
-ï¿½	Planilha de Vereadores
+•	Planilha de Vereadores
 >	Colunas: Id, Nome, Partido, Foto.
-ï¿½	Planilha de aï¿½ï¿½es
->	Colunas: IdVereador, Texto, Data, Tipo da aï¿½ï¿½o.
+•	Planilha de ações
+>	Colunas: IdVereador, Texto, Data, Tipo da ação.
 
-3.	Instruï¿½ï¿½es de Uso	 
+3.	Instruções de Uso	 
 
 1)	Instalar o Eclipse
 2)	Instalar o SDK do Google App Engine
-ï¿½	Google - http://dl.google.com/eclipse/plugin/3.7
+•	Google - http://dl.google.com/eclipse/plugin/3.7
 3)	Cria uma conta para o GAE (Google App Engine):
-ï¿½	https://appengine.google.com/
-4)	Baixar o cï¿½digo fonte no GITHUB
-ï¿½	https://github.com/harn/Hackathon_Chutaum
+•	https://appengine.google.com/
+4)	Baixar o código fonte no GITHUB
+•	https://github.com/harn/Hackathon_Chutaum
 5)	Inicializar o projeto 
-6)	Acessar o /upload/ e fazer o envio das planilhas de CSV, sï¿½ ï¿½ permitido por user ADM.
+6)	Acessar o /upload/ e fazer o envio das planilhas de CSV, só é permitido por user ADM.

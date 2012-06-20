@@ -1,10 +1,4 @@
-<!-- Indices written at Sat, 26 May 2012 16:59:17 GMT-03:00 -->
+<!-- Indices written at Tue, 19 Jun 2012 22:12:57 BRT -->
 
-<datastore-indexes>
+<datastore-indexes/>
 
-    <!-- Used 91 times in query history -->
-    <datastore-index kind="Action" ancestor="true" source="auto">
-        <property name="DateMs" direction="desc"/>
-    </datastore-index>
-
-</datastore-indexes>
