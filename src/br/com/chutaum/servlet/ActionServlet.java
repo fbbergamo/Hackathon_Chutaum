@@ -1,7 +1,6 @@
 package br.com.chutaum.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.chutaum.model.Entitys;
 import br.com.chutaum.model.Politician;
 
 import br.com.chutaum.utils.Util;
@@ -41,7 +41,7 @@ public class ActionServlet extends HttpServlet {
 
     		try {
         		Key ancestorKey = KeyFactory.createKey("Politician",Integer.parseInt(req.getParameter("vereador")));
-        		Iterable<Entity> actions = Util.listChildren("Action", ancestorKey, 20, i);
+        		Iterable<Entity> actions = Util.listChildren(Entitys.PoliticianAction, ancestorKey, 20, i);
         		i+=20;
         		int count =0;
         		for (Entity tmp : actions) {
@@ -63,15 +63,15 @@ public class ActionServlet extends HttpServlet {
 			    
 			} catch (Exception e) {
 				e.printStackTrace();
-				
 			}    
     	}
     	else if ((req.getParameter("user")!=null) &&(req.getParameter("user")!="")) {
     		try {
         		Key ancestorKey = KeyFactory.createKey("User",req.getParameter("user"));
-        		Iterable<Entity> actions = Util.listChildren("UserAction", ancestorKey, 20, i);
+        		Iterable<Entity> actions = Util.listChildren(Entitys.UserAction, ancestorKey, 20, i);
         		i+=20;
         		int count =0;
+        		
         		for (Entity tmp : actions) {
         			count++;
         		}
@@ -98,8 +98,6 @@ public class ActionServlet extends HttpServlet {
     	}
     	else {
     		 res.sendRedirect("/"); 
- 			
-    		
     	}
 	
 	

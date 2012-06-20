@@ -18,6 +18,7 @@ import br.com.chutaum.json.JSONArray;
 import br.com.chutaum.json.JSONException;
 import br.com.chutaum.json.JSONObject;
 import br.com.chutaum.model.Action;
+import br.com.chutaum.model.Entitys;
 import br.com.chutaum.model.Politician;
 import br.com.chutaum.model.User;
 import br.com.chutaum.politician.PoliticianController;
@@ -52,7 +53,7 @@ public class ActionQueue  extends HttpServlet {
 		StringReader string = new StringReader(new String(blobstoreService.fetchData(blobKey,0,1015807),"UTF8"));
         
         CSVReader reader=new CSVReader(string,';');
-        //título
+        //tï¿½tulo
         reader.readNext();
 	    
 	    String[] line;
@@ -64,7 +65,7 @@ public class ActionQueue  extends HttpServlet {
 	        	stb.append(';');   
 	        }
 			
-			//cria a ação através dos dados do arquivos
+			//cria a aï¿½ï¿½o atravï¿½s dos dados do arquivos
        		Action action = createActionObject(stb);
        		
        		if (action.getIdPolition() != 0) {
@@ -117,7 +118,7 @@ public class ActionQueue  extends HttpServlet {
 
 	private Entity createActionEntity(Action action, Entity politician,
 			Politician poli) {
-		Entity entity = new Entity("Action", politician.getKey());
+		Entity entity = new Entity(Entitys.PoliticianAction, politician.getKey());
 		Text text = new Text(action.getContent());
 		entity.setProperty("Content", text);
 		entity.setProperty("Date",action.getDate());

@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.chutaum.json.JSONArray;
 import br.com.chutaum.json.JSONException;
 import br.com.chutaum.json.JSONObject;
+import br.com.chutaum.model.Entitys;
 import br.com.chutaum.model.Politician;
 import br.com.chutaum.utils.Util;
 
@@ -33,7 +34,7 @@ public class PoliticianController {
 
 	public static JSONArray politicianActions(Politician politician, int sizepage, int offent) throws JSONException {
 		Key ancestorKey = KeyFactory.createKey("Politician", politician.getId());
-    	return new JSONArray(Util.listChildren("Actions", ancestorKey,sizepage,offent));	
+    	return new JSONArray(Util.listChildren(Entitys.PoliticianAction, ancestorKey,sizepage,offent));	
 	}
 	
 	public static Iterable<Entity>  politicianFollow(Politician politician) throws JSONException {
