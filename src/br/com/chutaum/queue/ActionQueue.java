@@ -58,15 +58,12 @@ public class ActionQueue  extends HttpServlet {
 	    
 	    String[] line;
 		while((line=reader.readNext())!=null){
-			StringBuilder stb = new StringBuilder(400);
+			
 	        
-			for(int i=0;i<line.length;i++){
-	        	stb.append(line[i]);
-	        	stb.append(';');   
-	        }
+		
 			
 			//cria a a��o atrav�s dos dados do arquivos
-       		Action action = createActionObject(stb);
+       		Action action = createActionObject(line);
        		
        		if (action.getIdPolition() != 0) {
 			 	Entity politician = Util.findEntity(KeyFactory.createKey("Politician", action.getIdPolition()));
@@ -102,7 +99,7 @@ public class ActionQueue  extends HttpServlet {
 	private Entity createUserAction(Action action, Politician poli, Key actionKey, Entity en) throws JSONException {
 		
 			Entity user = Util.findEntity(KeyFactory.createKey("User", en.getProperty("User").toString()));
-			Entity useraction = new Entity("UserAction", user.getKey());
+			Entity useraction = new Entity(Entitys.UserAction, user.getKey());
 			Text text = new Text(action.getContent());
 			useraction.setProperty("Content", text);
 			useraction.setProperty("Date",action.getDate());
@@ -130,9 +127,8 @@ public class ActionQueue  extends HttpServlet {
 		return entity;
 	}
 
-	private Action createActionObject(StringBuilder stb) {
+	private Action createActionObject(String[] input) {
 		
-		String [] input = new String(stb).split(";"); 
 		Action action = new Action();
 		action.setIdPolition(Integer.parseInt(input[0]));
 		action.setContent(input[1]);

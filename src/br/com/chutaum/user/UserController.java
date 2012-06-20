@@ -102,17 +102,11 @@ public class UserController {
 		 for (Entity en : todelete) {
 			 Util.deleteEntity(en.getKey());
 		 }
-		//TODO: fazer o delete do politicianfollow;
-		//Entity poliEntity = new Entity("PoliticanFollow",poli.getId());
-	  
-		
+
 		
 		Entity second = new Entity("SecondTime", user.getEmail()+poli.getId());
 		Util.persistEntity(second);
 		
- 		
- 		//Util.deleteEntity(poliEntity.getKey());
- 		//TODO: add os ultimos 30 se começar a seguir;
  		
 	}
 	

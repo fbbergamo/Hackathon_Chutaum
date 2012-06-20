@@ -23,7 +23,6 @@ chutaum.actions = new function () {
     	    	chutaum.actions.timeline.trigger('ajax-call')
     	    }
     	  });
-
     	
         $(this).trigger('ajax-call'); 
     };
@@ -54,9 +53,7 @@ chutaum.actions = new function () {
 
 $(document).ready(function() {
 	
-chutaum.actions.init();
-
-
+	chutaum.actions.init();
 
 });
 

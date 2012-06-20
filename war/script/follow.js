@@ -2,7 +2,6 @@
 $(document).ready(function() {
 	
 
-
 $(".follow").live('click',function(e) {
 		
 	e.preventDefault();
@@ -13,7 +12,7 @@ $(".follow").live('click',function(e) {
          doNotRetry: false
      });
 	 if ($(this).attr('href')=="#") {
-		 alert("Para Seguir um vereador � nescessario fazer o Login ou Cadastro"  );
+		 alert("Para Seguir um vereador é nescessário fazer o Login ou Cadastro"  );
 		 
 	 }
 	 else {
@@ -23,7 +22,7 @@ $(".follow").live('click',function(e) {
          	  });
      }
 
-         jqXHR.fail("");
+         jqXHR.fail(alert("Erro ao conectar o servidor"));
 }
 });
 
