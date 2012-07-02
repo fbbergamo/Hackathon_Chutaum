@@ -1,4 +1,10 @@
-<!-- Indices written at Tue, 19 Jun 2012 22:12:57 BRT -->
+<!-- Indices written at Sat, 30 Jun 2012 19:38:48 BRT -->
 
-<datastore-indexes/>
+<datastore-indexes>
 
+    <!-- Used 1 time in query history -->
+    <datastore-index kind="PoliticianAction" ancestor="true" source="auto">
+        <property name="DateMs" direction="desc"/>
+    </datastore-index>
+
+</datastore-indexes>
