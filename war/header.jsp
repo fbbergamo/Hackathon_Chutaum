@@ -1,3 +1,4 @@
+
 <%@page import="br.com.chutaum.user.UserController"%>
 <%@page import="com.google.appengine.api.users.*"%>
 <%@page import="java.util.HashSet"%>
@@ -6,6 +7,8 @@
 <title>Vereadores.org</title>
 <script type="text/JavaScript" src="/script/jquery.min.js"></script> 
 <script type="text/JavaScript" src="/script/follow.js"></script> 
+<script type="text/JavaScript" src="/script/vote.js"></script> 
+
 <script type="text/JavaScript" src="/script/jquery.endless-scroll.js?v=1"></script> 
 <link rel="stylesheet" type="text/css" href="/css/TimeLine.css?v=31" />
 <script type="text/JavaScript" src="/script/load-actions.js?v=32"></script> 

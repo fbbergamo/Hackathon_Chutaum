@@ -24,7 +24,6 @@
  			 				Calendar calendar;
  			 				int month = 0;
  			 				for (Entity result : array) {
- 			 					
  			 					Action action = new Action(result);
  			 					calendar = Calendar.getInstance();
  			 					calendar.setTimeInMillis(action.getDateMs());
@@ -39,9 +38,12 @@
 				%>
 				 <li>
 					<div class="time">
+					
 						<img  src="<%= poli.getPhoto()%>" />
-							 <p><%= action.getNamePolitician() %> --  realizou "<%= action.getKind() %>" em <%= format.format(calendar.getTime()) %></p>
-							 
+							 <p><%=  action.getNamePolitician() %> --  realizou "<%= action.getKind() %>" em <%= format.format(calendar.getTime()) %></p>
+							<p><% request.setAttribute("action", action); %> 
+			<jsp:include page="like.jsp" />	
+							</p>		 
 					</div>
 					
 					
