@@ -44,7 +44,7 @@ chutaum.actions = new function () {
 	
 	            });
 	
-	            jqXHR.fail("");
+	            jqXHR.fail(function () { alert("Erro ao conectar o servidor") });
 	        }
     	}
     };

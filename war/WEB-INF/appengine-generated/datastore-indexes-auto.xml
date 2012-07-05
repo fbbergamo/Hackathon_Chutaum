@@ -1,9 +1,14 @@
-<!-- Indices written at Sat, 30 Jun 2012 19:38:48 BRT -->
+<!-- Indices written at Wed, 4 Jul 2012 21:55:51 BRT -->
 
 <datastore-indexes>
 
-    <!-- Used 1 time in query history -->
+    <!-- Used 14 times in query history -->
     <datastore-index kind="PoliticianAction" ancestor="true" source="auto">
+        <property name="DateMs" direction="desc"/>
+    </datastore-index>
+
+    <!-- Used 37 times in query history -->
+    <datastore-index kind="UserAction" ancestor="true" source="auto">
         <property name="DateMs" direction="desc"/>
     </datastore-index>
 

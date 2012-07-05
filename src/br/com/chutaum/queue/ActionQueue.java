@@ -1,7 +1,7 @@
 package br.com.chutaum.queue;
 
 /**
- * COmentário teste
+ * COmentï¿½rio teste
  */
 import java.io.IOException;
 import java.io.StringReader;
@@ -57,12 +57,9 @@ public class ActionQueue  extends HttpServlet {
         CSVReader reader=new CSVReader(string,';');
         //tï¿½tulo
         reader.readNext();
-	    
+        
 	    String[] line;
-		while((line=reader.readNext())!=null){
-			
-	        
-		
+		while((line=reader.readNext())!=null) {
 			
 			//cria a aï¿½ï¿½o atravï¿½s dos dados do arquivos
        		Action action = createActionObject(line);

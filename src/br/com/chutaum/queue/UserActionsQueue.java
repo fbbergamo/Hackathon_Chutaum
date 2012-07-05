@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.chutaum.model.Action;
+import br.com.chutaum.model.Entitys;
 import br.com.chutaum.model.Politician;
 import br.com.chutaum.politician.PoliticianController;
 import br.com.chutaum.utils.Util;
@@ -31,11 +32,11 @@ public class UserActionsQueue extends HttpServlet {
        		Key ancestorKey = KeyFactory.createKey("Politician",Integer.parseInt(req.getParameter("poli")));
        		Entity enPoli = Util.findEntity(ancestorKey);
        		Politician poli = new Politician(enPoli);
-    		Iterable<Entity> actions = Util.listChildren("Action", ancestorKey, 80, 0);
+    		Iterable<Entity> actions = Util.listChildren(Entitys.PoliticianAction, ancestorKey, 80, 0);
     		
     		for (Entity en : actions) {
     			Entity user = Util.findEntity(KeyFactory.createKey("User", req.getParameter("user")));
-    			Entity useraction = new Entity("UserAction", user.getKey());
+    			Entity useraction = new Entity(Entitys.UserAction, user.getKey());
     			Action action = new Action(en);
     			Text text = new Text(action.getContent());
     			useraction.setProperty("Content", text);
