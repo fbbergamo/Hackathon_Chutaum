@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.chutaum.model.Action;
 import br.com.chutaum.model.Entitys;
 import br.com.chutaum.model.Politician;
+import br.com.chutaum.politician.PoliticianController;
 import br.com.chutaum.utils.Util;
 
 import com.google.appengine.api.datastore.Entity;
