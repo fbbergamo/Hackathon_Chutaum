@@ -10,32 +10,49 @@
 
  	//user nao null
 	if (user!=null) {
-		Key likeActionKey = KeyFactory.createKey("LikeAction", user.getEmail()+action.getId());
-		Key disLikeActionKey = KeyFactory.createKey("DislikeAction", user.getEmail()+action.getId());
 		
+		//mauricio aqui devia ter uma entidade só e colocar uma coluna como argumento do q ele votou 
+		//imagina q agnt está fazendo dois acessos ao banco quando só precisava fazer um 
+		//fazer um metodo em um controler
+		Key likeActionKey = KeyFactory.createKey("VoteAction", user.getEmail()+action.getId());
 		Entity likeAction = Util.findEntity(likeActionKey);
-		Entity dislikeAction = Util.findEntity(disLikeActionKey);
+		
+		int vote = 2;
+		
+		if (likeAction != null ) {
+			vote = (Integer)likeAction.getProperty("Vote");
+		}
+		
+		
 %> 
-	<div class="votes">
+	<div class="row"style="margin-left:0;">
 		<% //if se o usuario não votou em alguma coisa  
-			if( likeAction==null && dislikeAction==null) {%>
-				<p class="dislike"><% //get o numero de dislike da action usar o action %></p>
-				<a class="vote" href="/dislike?id=<%=action.getId()%>&mail=<%= user.getEmail()%>">Não Apoiar</a>
-				<p class="like"><% //get o numero de like da action usar o actio %></p>
-				<a class="vote" href="/like?id=<%= action.getId() %>&mail=<%= user.getEmail()%>">>Apoiar</a>
+			if ((likeAction==null) || (vote==2)) {%>
+				<span class="badge badge-success" style="color:white; margin-right:16px">2
+				<a class="vote"  style="color:white;" href="/like?id=<%= action.getId() %>&mail=<%= user.getEmail()%>"><i class="icon-thumbs-up"></i> CONCORDAR</a></span>
+				<span class="badge badge-important" style="color:white;">2
+				<a class="vote" style="color:white;" href="/dislike?id=<%=action.getId()%>&mail=<%= user.getEmail()%>"><i class="icon-thumbs-down"></i>
+				DISCORDAR</a></span>
+				
 			
 		<% } else { %>
-			<%if(dislikeAction != null) {%>
-				<p class="dislike"><% //get o numero de dislike da action usar o actio %></p>
-				<a class="vote" href="/undislike?id=<%= action.getId() %>">>Não Apoiar</a>
-				<p class="like"><% //get o numero de like da action usar o actio %></p>
-				<a href="#"<%= action.getId() %>>Apoiar</a>
-			<%}else {%>
-				<p class="dislike"><% //get o numero de dislike da action usar o actio %></p>
-				<a href="#">Não Apoiar</a>
-				<p class="like"><% //get o numero de like da action usar o actio %></p>
-				<a class="vote" href="/unlike?id=<%= action.getId() %>">Apoiar</a>
-			<%}
+			<% 
+				if (vote == 0) {%>
+				<span class="badge badge-success" style="color:white;">2
+				<span style="color:white;"><i class="icon-thumbs-up"></i> CONCORDAR</span></span>
+				
+				<span class="badge badge-important" style="color:black; margin-left:16px">2
+				<a class="vote" style="color:black;"  href="/undislike?id=<%=action.getId()%>&mail=<%= user.getEmail()%>"><i class="icon-thumbs-down"></i>CANCELAR</a></span>
+				
+			<%}else if (vote == 1)  {%>
+				
+				<span style="color:black; margin-right:16px" class="badge badge-success">2
+				<a style="color:black;" class="vote" href="/unlike?id=<%=action.getId()%>&mail=<%= user.getEmail()%>"><i class="icon-thumbs-up"></i>CANCELAR</a></span>
+				
+				<span class="badge badge-important">2
+				<span><i class="icon-thumbs-down"></i>DISCORDAR</a>
+				</span> </span>
+							<%}
 		
 		}%>	
 	</div>

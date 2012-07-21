@@ -15,6 +15,10 @@
 <link rel="stylesheet" type="text/css" href="/css/master.css?v=13" />
 <script src="//connect.facebook.net/en_US/all.js"></script>
 
+
+	<link href="css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="Fort/css/font-awesome.css" media="screen" rel="stylesheet" type="text/css" />
+
 <script type="text/javascript">
 
   var _gaq = _gaq || [];

@@ -1,9 +1,7 @@
 
 
 body {
-	font-family: Verdana;
-	background-color: #e7ebf2;
-	margin: 0 auto;
+	background-color: #e7ebf2 !important;
 	font-size: 12px;
 }
 
@@ -12,7 +10,6 @@ body {
 	padding: 5px 11px;
 	background: url(/images/grandient.png) left repeat;
 	color: white;
-	text-decoration: none;
 	margin-bottom: 10px;
 	border-radius: 10px;
 	margin-left: 12px;

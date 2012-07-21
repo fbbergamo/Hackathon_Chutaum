@@ -37,18 +37,17 @@
 				}
 				%>
 				 <li>
-					<div class="time">
-					
-					<img  src="<%= poli.getPhoto()%>" />
-						<p><%=  action.getNamePolitician() %> --  realizou "<%= action.getKind() %>" em <%= format.format(calendar.getTime()) %></p>
-						<p><% request.setAttribute("action", action); %> 
-					<jsp:include page="like.jsp" />	
-							</p>		 
+				 <div class="time">
+						<img class="pull-left"  src="<%= poli.getPhoto()%>"  height="30" width="30" />
+							<div style="margin-left:50px;">
+								<small style="font-size:11px;"><%=  action.getNamePolitician() %> --  realizou "<%= action.getKind() %>" em <%= format.format(calendar.getTime()) %></small>
+							</div>
 					</div>
 					
-					
 					<span class="corner"></span>
-					<p class="content"><%= action.getContent() %></p>
+					<p style="clear:both; margin-top:5px;"><%= action.getContent() %></p>
+					<p><% request.setAttribute("action", action); %> <jsp:include page="like.jsp" /> </p>		 
+					
 					<!--   <div class="fb-comments" data-href="http://localhost:8888/<%= action.getKey() %>" data-num-posts="2" data-width="400"></div>-->
 				</li>
 		<% }

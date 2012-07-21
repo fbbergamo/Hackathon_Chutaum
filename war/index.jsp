@@ -62,12 +62,17 @@
      <% 
      }
      %>
-      	<p style="
-    float: left;
-    margin-top: 40px;
-">Contato:  harnbb@gmail.com / hitoshi@pop.com.br </p>	
+    
     </div> 
   
+     <div class="footer" 
+   style="
+   	position: relative;
+	margin-top: -180px; /* negative value of footer height */
+	height: 180px;
+	clear:both;">
+      	<p>Contato:  contato@vereadores.org </p>	
+    </div>
 </body>
 
 </html>

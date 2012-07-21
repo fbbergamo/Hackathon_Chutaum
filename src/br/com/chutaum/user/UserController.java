@@ -81,17 +81,14 @@ public class UserController {
 	public static void likeAction(String mail, String actionId) {
 		String voteActionId = generateKey(mail, actionId);
 
-		Entity voteAction = Util.findEntity(KeyFactory.createKey(VOTE_ACTION, voteActionId));
-
-		if(voteAction == null){
-			voteAction = new Entity(VOTE_ACTION, voteActionId);
-		}
+		//cria logo em vez de consultar na base 1 vez. 
+		Entity voteAction = new Entity(VOTE_ACTION, voteActionId);
 			
 		voteAction.setProperty(VOTE, Constants.LIKE);
 		
-		Entity actionCount = Util.findEntity(KeyFactory.createKey(ACTION_COUNT, voteActionId));
+		Entity actionCount = Util.findEntity(KeyFactory.createKey(ACTION_COUNT, actionId));
 		if(actionCount == null){
-			actionCount = createActionEntity(voteActionId);
+			actionCount = createActionEntity(actionId);
 		}
 		int count = (Integer)actionCount.getProperty(LIKE_COUNT);
 		actionCount.setProperty(LIKE_COUNT, ++count);
@@ -113,23 +110,22 @@ public class UserController {
 	public static void DislikeAction(String mail, String actionId){
 		
 		String voteActionId = generateKey(mail, actionId);
-		Entity voteAction = Util.findEntity(KeyFactory.createKey(VOTE_ACTION, voteActionId));
-
-		if(voteAction == null){
-			voteAction = new Entity(VOTE_ACTION, voteActionId);
-		}
+		
+		Entity voteAction = new Entity(VOTE_ACTION, voteActionId);
+		
 		voteAction.setProperty(VOTE, Constants.DISLIKE);
 
-		Entity actionCount = Util.findEntity(KeyFactory.createKey(ACTION_COUNT, voteActionId));
+		Entity actionCount = Util.findEntity(KeyFactory.createKey(ACTION_COUNT, actionId));
+		
 		if(actionCount == null){
 			actionCount = createActionEntity(actionId);
 		}
+		
 		int count = (Integer)actionCount.getProperty(DISLIKE_COUNT);
 		actionCount.setProperty(DISLIKE_COUNT, ++count);
 
 		Util.persistEntity(actionCount);
 		Util.persistEntity(voteAction);
-		
 	}
 	
 	

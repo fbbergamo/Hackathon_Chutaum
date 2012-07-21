@@ -43,7 +43,7 @@ public class UserActionsQueue extends HttpServlet {
     			useraction.setProperty("Date",action.getDate());
     			useraction.setProperty("DateMs", action.getDateMs());
     			useraction.setProperty("Kind",action.getKind());
-    			useraction.setProperty("UniqueActions",action.getKey());
+    			useraction.setProperty("UniqueActions",action.getId());
     			useraction.setProperty("IdPolitician",poli.getId());
     			useraction.setProperty("NamePolitician",poli.getName());
     			useraction.setProperty("Party",poli.getParty());
