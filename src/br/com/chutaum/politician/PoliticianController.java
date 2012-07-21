@@ -1,10 +1,5 @@
 package br.com.chutaum.politician;
 
-import java.util.List;
-
-import br.com.chutaum.json.JSONArray;
-import br.com.chutaum.json.JSONException;
-import br.com.chutaum.json.JSONObject;
 import br.com.chutaum.model.Entitys;
 import br.com.chutaum.model.Politician;
 import br.com.chutaum.utils.Util;

@@ -20,7 +20,7 @@ $(".vote").live('click',function(e) {
 		         	  });
 		     }
 		     
-		    jqXHR.fail(alert("Erro ao conectar o servidor"));
+	         jqXHR.fail(function () { alert("Erro ao conectar o servidor") });
 		  
 	 
 });

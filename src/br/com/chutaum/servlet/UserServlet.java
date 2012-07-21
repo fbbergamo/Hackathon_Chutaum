@@ -22,11 +22,6 @@ import br.com.chutaum.utils.Util;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 
-
-
-
-
-
 public class UserServlet extends HttpServlet {
 
 

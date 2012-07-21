@@ -1,14 +1,13 @@
 package br.com.chutaum.queue;
 
 /**
- * COmentário teste
+ * COmentï¿½rio teste
  */
 import java.io.IOException;
 import java.io.StringReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Scanner;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,15 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import au.com.bytecode.opencsv.CSVReader;
-import br.com.chutaum.json.JSONArray;
 import br.com.chutaum.json.JSONException;
-import br.com.chutaum.json.JSONObject;
 import br.com.chutaum.model.Action;
 import br.com.chutaum.model.Entitys;
 import br.com.chutaum.model.Politician;
-import br.com.chutaum.model.User;
 import br.com.chutaum.politician.PoliticianController;
-import br.com.chutaum.user.UserController;
 import br.com.chutaum.utils.Util;
 
 import com.google.appengine.api.blobstore.BlobKey;
@@ -57,12 +52,9 @@ public class ActionQueue  extends HttpServlet {
         CSVReader reader=new CSVReader(string,';');
         //tï¿½tulo
         reader.readNext();
-	    
+        
 	    String[] line;
-		while((line=reader.readNext())!=null){
-			
-	        
-		
+		while((line=reader.readNext())!=null) {
 			
 			//cria a aï¿½ï¿½o atravï¿½s dos dados do arquivos
        		Action action = createActionObject(line);

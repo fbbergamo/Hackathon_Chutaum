@@ -39,10 +39,10 @@
 				 <li>
 					<div class="time">
 					
-						<img  src="<%= poli.getPhoto()%>" />
-							 <p><%=  action.getNamePolitician() %> --  realizou "<%= action.getKind() %>" em <%= format.format(calendar.getTime()) %></p>
-							<p><% request.setAttribute("action", action); %> 
-			<jsp:include page="like.jsp" />	
+					<img  src="<%= poli.getPhoto()%>" />
+						<p><%=  action.getNamePolitician() %> --  realizou "<%= action.getKind() %>" em <%= format.format(calendar.getTime()) %></p>
+						<p><% request.setAttribute("action", action); %> 
+					<jsp:include page="like.jsp" />	
 							</p>		 
 					</div>
 					

@@ -18,7 +18,9 @@ public class Action implements java.io.Serializable  {
 		this.setNamePolitician(en.getProperty("NamePolitician").toString());
 	}
 	
-	public Action() {}
+	public Action() {
+		
+	}
 	
 	private String Key;
 	private static final long serialVersionUID = 1L;
@@ -90,8 +92,6 @@ public class Action implements java.io.Serializable  {
 	public void setKind(String kind) {
 		this.kind = kind;
 	}
-	
-
 
 	public long getDateMs() {
 		return dateMs;
