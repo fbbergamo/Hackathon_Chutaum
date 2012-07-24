@@ -17,20 +17,33 @@
 		Key likeActionKey = KeyFactory.createKey("VoteAction", user.getEmail()+action.getId());
 		Entity likeAction = Util.findEntity(likeActionKey);
 		
-		int vote = 2;
+		long vote = 2;
 		
 		if (likeAction != null ) {
-			vote = (Integer)likeAction.getProperty("Vote");
+			//Workaround - verificar depois.
+			//Nos teste uma hora vinha Integer outra hora vinha Long
+			if(likeAction.getProperty("Vote") instanceof Long)
+				vote = (Long) likeAction.getProperty("Vote");
+			if(likeAction.getProperty("Vote") instanceof Integer)
+				vote = (Integer) likeAction.getProperty("Vote");
 		}
+		Entity actionCount = Util.findEntity(KeyFactory.createKey("ActionCount", action.getId()));
+		int likeCount = 0;
+		int dislikeCount = 0;
 		
+		if(actionCount != null){
+			likeCount = (Integer) actionCount.getProperty("LikeCount");
+			dislikeCount = (Integer) actionCount.getProperty("DislikeCount");
+				
+		}
 		
 %> 
 	<div class="row"style="margin-left:0;">
 		<% //if se o usuario não votou em alguma coisa  
 			if ((likeAction==null) || (vote==2)) {%>
-				<span class="badge badge-success" style="color:white; margin-right:16px">2
+				<span class="badge badge-success" style="color:white; margin-right:16px"><%=likeCount %>
 				<a class="vote"  style="color:white;" href="/like?id=<%= action.getId() %>&mail=<%= user.getEmail()%>"><i class="icon-thumbs-up"></i> CONCORDAR</a></span>
-				<span class="badge badge-important" style="color:white;">2
+				<span class="badge badge-important" style="color:white;"><%=dislikeCount %>
 				<a class="vote" style="color:white;" href="/dislike?id=<%=action.getId()%>&mail=<%= user.getEmail()%>"><i class="icon-thumbs-down"></i>
 				DISCORDAR</a></span>
 				
@@ -38,18 +51,18 @@
 		<% } else { %>
 			<% 
 				if (vote == 0) {%>
-				<span class="badge badge-success" style="color:white;">2
+				<span class="badge badge-success" style="color:white;"><%=likeCount %>
 				<span style="color:white;"><i class="icon-thumbs-up"></i> CONCORDAR</span></span>
 				
-				<span class="badge badge-important" style="color:black; margin-left:16px">2
+				<span class="badge badge-important" style="color:black; margin-left:16px"><%=likeCount %>
 				<a class="vote" style="color:black;"  href="/undislike?id=<%=action.getId()%>&mail=<%= user.getEmail()%>"><i class="icon-thumbs-down"></i>CANCELAR</a></span>
 				
 			<%}else if (vote == 1)  {%>
 				
-				<span style="color:black; margin-right:16px" class="badge badge-success">2
+				<span style="color:black; margin-right:16px" class="badge badge-success"><%=dislikeCount %>
 				<a style="color:black;" class="vote" href="/unlike?id=<%=action.getId()%>&mail=<%= user.getEmail()%>"><i class="icon-thumbs-up"></i>CANCELAR</a></span>
 				
-				<span class="badge badge-important">2
+				<span class="badge badge-important"><%=dislikeCount %>
 				<span><i class="icon-thumbs-down"></i>DISCORDAR</a>
 				</span> </span>
 							<%}
