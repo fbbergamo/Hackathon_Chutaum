@@ -7,6 +7,15 @@
 	com.google.appengine.api.users.UserService userService = UserServiceFactory.getUserService();
  	br.com.chutaum.model.User user = UserController.currentUser(session);
 	Action action = (Action) request.getAttribute("action"); 
+	Entity actionCount = Util.findEntity(KeyFactory.createKey("ActionCount", action.getId()));
+	int likeCount = 0;
+	int dislikeCount = 0;
+	
+	if(actionCount != null){
+		likeCount = (Integer) actionCount.getProperty("LikeCount");
+		dislikeCount = (Integer) actionCount.getProperty("DislikeCount");
+			
+	}
 
  	//user nao null
 	if (user!=null) {
@@ -26,15 +35,6 @@
 				vote = (Long) likeAction.getProperty("Vote");
 			if(likeAction.getProperty("Vote") instanceof Integer)
 				vote = (Integer) likeAction.getProperty("Vote");
-		}
-		Entity actionCount = Util.findEntity(KeyFactory.createKey("ActionCount", action.getId()));
-		int likeCount = 0;
-		int dislikeCount = 0;
-		
-		if(actionCount != null){
-			likeCount = (Integer) actionCount.getProperty("LikeCount");
-			dislikeCount = (Integer) actionCount.getProperty("DislikeCount");
-				
 		}
 		
 %> 
@@ -65,11 +65,19 @@
 				<span class="badge badge-important"><%=dislikeCount %>
 				<span><i class="icon-thumbs-down"></i>DISCORDAR</a>
 				</span> </span>
-							<%}
+			<%}
 		
 		}%>	
 	</div>
 		
 		<%
-	}
+	}else {%>
+		
+		<span class="badge badge-success" style="color:white; margin-right:16px"><%=likeCount %>
+		<i class="icon-thumbs-up"></i> CONCORDAR</span>
+		<span class="badge badge-important" style="color:white;"><%=dislikeCount %>
+		<i class="icon-thumbs-down"></i>
+		DISCORDAR</span>
+		
+	<%}
 %>

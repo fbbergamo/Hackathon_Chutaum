@@ -90,7 +90,14 @@ public class UserController {
 		if(actionCount == null){
 			actionCount = createActionEntity(actionId);
 		}
-		int count = (Integer)actionCount.getProperty(LIKE_COUNT);
+		long count = 0;
+		
+		if(actionCount.getProperty(LIKE_COUNT) instanceof Integer){
+			count = (Integer)actionCount.getProperty(LIKE_COUNT);
+		}
+		if(actionCount.getProperty(LIKE_COUNT) instanceof Long){
+			count = (Long) actionCount.getProperty(LIKE_COUNT);
+		}
 		actionCount.setProperty(LIKE_COUNT, ++count);
 		
 		
