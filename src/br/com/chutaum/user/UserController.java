@@ -78,7 +78,7 @@ public class UserController {
 	 * @param mail
 	 * @param actionId
 	 */
-	public static void likeAction(String mail, String actionId) {
+	public static int likeAction(String mail, String actionId) {
 		String voteActionId = generateKey(mail, actionId);
 
 		//cria logo em vez de consultar na base 1 vez. 
@@ -90,20 +90,18 @@ public class UserController {
 		if(actionCount == null){
 			actionCount = createActionEntity(actionId);
 		}
-		long count = 0;
+		int count = 0;
 		
 		if(actionCount.getProperty(LIKE_COUNT) instanceof Integer){
 			count = (Integer)actionCount.getProperty(LIKE_COUNT);
 		}
-		if(actionCount.getProperty(LIKE_COUNT) instanceof Long){
-			count = (Long) actionCount.getProperty(LIKE_COUNT);
-		}
+		
 		actionCount.setProperty(LIKE_COUNT, ++count);
 		
 		
 		Util.persistEntity(actionCount);
 		Util.persistEntity(voteAction);
-		
+		return count;
 	}
 	
 	private static Entity createActionEntity(String id){

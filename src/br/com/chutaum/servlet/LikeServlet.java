@@ -1,7 +1,9 @@
 package br.com.chutaum.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,8 +29,11 @@ public class LikeServlet extends HttpServlet{
 		if(user != null){
 			//verifica se é o usuário corrente
 			if(user.getEmail().equals(mail)){
-				UserController.likeAction(mail, actionId);
-				
+				//toshiu esse metodo deve retornar o numero atualizado do vote pq dae vc pode fazer um 
+				int count = UserController.likeAction(mail, actionId);
+				 resp.setContentType("text/html");
+				 PrintWriter out = resp.getWriter();
+				 out.print("<span style='color:black; margin-right:16px' class='badge badge-success'>"+Integer.toString(count)+"<a style='color:black;' class='vote' href='/unlike?id=[ID]&mail=[EMAIL]%>'><i class='icon-thumbs-up'></i>CANCELAR</a></span>");
 			}
 
 			

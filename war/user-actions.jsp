@@ -38,12 +38,16 @@
 				}
 				%>
 				 <li>
-					<div class="time"><img  src="<%= action.getPhoto()%>" /> <p><%= action.getNamePolitician() %> --  realizou "<%= action.getKind() %>" em <%= format.format(calendar.getTime()) %></p></div></div>
+					<div class="time">
+					<img class="pull-left"  height="30" width="30"  src="<%= action.getPhoto()%>" /> 
+					<div style="margin-left:50px;">
+						<small style="font-size:11px;"><%= action.getNamePolitician() %> --  realizou "<%= action.getKind() %>" em <%= format.format(calendar.getTime()) %></small>
+					</div>
+					</div>					
+					
 					<span class="corner"></span>
-					<p class="content"><%= action.getContent() %></p>
-					<!--   <div class="fb-comments" data-href="http://localhost:8888/<%= action.getUniqueActions() %>" data-num-posts="2" data-width="400"></div>-->
+					<p style="clear:both; margin-top:5px;"><%= action.getContent() %></p>
 				</li>
 		<% }
 		
 		} %>
-		</ol>  
