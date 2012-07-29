@@ -53,9 +53,9 @@
 	<div class="row"style="margin-left:0;">
 		<% //if se o usuario não votou em alguma coisa  
 			if ((likeAction==null) || (vote==2)) {%>
-				<span class="badge badge-success" style="color:white; margin-right:16px"><%=likeCount %>
+				<span class="btn btn-mini btn-success" style="color:white; margin-right:16px; font-size: 10px;"><%=likeCount %>
 				<a class="vote"  style="color:white;" href="/like?id=<%= action.getId() %>&mail=<%= user.getEmail()%>"><i class="icon-thumbs-up"></i> CONCORDAR</a></span>
-				<span class="badge badge-important" style="color:white;"><%=dislikeCount %>
+				<span class="btn btn-mini btn-danger" style="color:white; font-size: 10px;"><%=dislikeCount %>
 				<a class="vote" style="color:white;" href="/dislike?id=<%=action.getId()%>&mail=<%= user.getEmail()%>"><i class="icon-thumbs-down"></i>
 				DISCORDAR</a></span>
 				
@@ -63,18 +63,18 @@
 		<% } else { %>
 			<% 
 				if (vote == 0) {%>
-				<span class="badge badge-success" style="color:white;"><%=likeCount %>
+				<span class="btn btn-mini btn-success" style="color:white; font-size: 10px; cursor: default;"><%=likeCount %>
 				<span style="color:white;"><i class="icon-thumbs-up"></i> CONCORDAR</span></span>
 				
-				<span class="badge badge-important" style="color:black; margin-left:16px"><%=dislikeCount %>
-				<a class="vote" style="color:black;"  href="/undislike?id=<%=action.getId()%>&mail=<%= user.getEmail()%>"><i class="icon-thumbs-down"></i>CANCELAR</a></span>
+				<span class="btn btn-mini disabled btn-danger" style="color:white; font-size: 10px; margin-left:16px"><%=dislikeCount %>
+				<a class="vote" style="color: white;"  href="/undislike?id=<%=action.getId()%>&mail=<%= user.getEmail()%>"><i class="icon-thumbs-down"></i>CANCELAR</a></span>
 				
 			<%}else if (vote == 1)  {%>
 				
-				<span style="color:black; margin-right:16px" class="badge badge-success"><%=likeCount %>
-				<a style="color:black;" class="vote" href="/unlike?id=<%= action.getId()%>&mail=<%= user.getEmail()%>"><i class="icon-thumbs-up"></i>CANCELAR</a></span>
+				<span style="margin-right:16px; font-size: 10px;" class=" btn btn-mini disabled btn-success"><%=likeCount %>
+				<a style="color:white; font-size: 10px;" class="vote" href="/unlike?id=<%= action.getId()%>&mail=<%= user.getEmail()%>"><i class="icon-thumbs-up"></i>CANCELAR</a></span>
 				
-				<span class="badge badge-important"><%=dislikeCount %>
+				<span class="btn btn-danger btn-mini" style="font-size: 10px; cursor: default;"><%=dislikeCount %>
 				<span><i class="icon-thumbs-down"></i>DISCORDAR</a>
 				</span> </span>
 			<%}
@@ -85,9 +85,9 @@
 		<%
 	}else {%>
 		
-		<span class="badge badge-success" style="color:white; margin-right:16px"><%=likeCount %>
+		<span class="btn btn-success btn-mini" style="color:white; margin-right:16px; font-size: 10px;"><%=likeCount %>
 		<a style="color:white;" class="vote" href="#"><i class="icon-thumbs-up"></i> CONCORDAR</span></a>
-		<span class="badge badge-important" style="color:white;"><%= dislikeCount %>
+		<span class="btn btn-danger btn-mini" style="color:white; font-size: 10px;"><%= dislikeCount %>
 		<a style="color:white;" class="vote" href="#"><i class="icon-thumbs-down"></i>
 		DISCORDAR</span></a>
 		
