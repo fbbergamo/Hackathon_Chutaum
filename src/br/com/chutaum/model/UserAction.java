@@ -17,7 +17,6 @@ public class UserAction extends Action {
 	public UserAction(Entity entity) {
 		com.google.appengine.api.datastore.Key parent = new KeyFactory.Builder(Entitys.Politician, Integer.parseInt(entity.getKey().getName().split("\\.")[1])).addChild(Entitys.PoliticianAction, entity.getKey().getName()).getKey();
 		
-		
 		Entity en= Util.findEntityAndAddCache(parent);	
 		this.setKey(en.getKey().toString());
 	 	this.setId(en.getKey().getName());

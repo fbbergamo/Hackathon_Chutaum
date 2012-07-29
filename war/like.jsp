@@ -3,6 +3,7 @@
 <%@page import="br.com.chutaum.model.Action"%>
 <%@page import="br.com.chutaum.utils.Util"%>
 <%@page import="com.google.appengine.api.datastore.*"%>
+
 <%  
 	com.google.appengine.api.users.UserService userService = UserServiceFactory.getUserService();
  	br.com.chutaum.model.User user = UserController.currentUser(session);
@@ -32,8 +33,8 @@
  	//user nao null
 	if (user!=null) {
 		
-		//mauricio aqui devia ter uma entidade só e colocar uma coluna como argumento do q ele votou 
-		//imagina q agnt está fazendo dois acessos ao banco quando só precisava fazer um 
+		//mauricio aqui devia ter uma entidade sï¿½ e colocar uma coluna como argumento do q ele votou 
+		//imagina q agnt estï¿½ fazendo dois acessos ao banco quando sï¿½ precisava fazer um 
 		//fazer um metodo em um controler
 		Key likeActionKey = KeyFactory.createKey("VoteAction", user.getEmail()+action.getId());
 		Entity likeAction = Util.findEntity(likeActionKey);
@@ -51,7 +52,7 @@
 		
 %> 
 	<div class="row"style="margin-left:0;">
-		<% //if se o usuario não votou em alguma coisa  
+		<% //if se o usuario nï¿½o votou em alguma coisa  
 			if ((likeAction==null) || (vote==2)) {%>
 				<span class="btn btn-mini btn-success" style="color:white; margin-right:16px; font-size: 10px;"><%=likeCount %>
 				<a class="vote"  style="color:white;" href="/like?id=<%= action.getId() %>&mail=<%= user.getEmail()%>"><i class="icon-thumbs-up"></i> CONCORDAR</a></span>

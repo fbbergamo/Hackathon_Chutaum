@@ -20,7 +20,7 @@ public class Action  {
 		this.setDateMs((Long) en.getProperty("DateMs"));
 		this.setIdPolition(Integer.parseInt((en.getProperty("IdPolitician").toString())));
 		this.setNamePolitician(en.getProperty("NamePolitician").toString());
-	}
+	}	
 	
 	public Action(String idAction, String content, Date date, App app, long poli) {
 		this.setContent(content);

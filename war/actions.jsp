@@ -7,7 +7,7 @@
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.Locale"%>
 <%@page import="java.util.List;"%>
-
+<%@page pageEncoding="UTF-8"%>
 
 	<%
 	

@@ -1,4 +1,4 @@
-
+<%@page pageEncoding="UTF-8"%>
 <%@page import="br.com.chutaum.user.UserController"%>
 <%@page import="com.google.appengine.api.users.*"%>
 <%@page import="java.util.HashSet"%>
@@ -83,7 +83,7 @@ alt="Powered by Google App Engine" />
    <% } else { %>
    
    <a href="/">Home</a> <a href="/cidadao">Meus Vereadores</a>
-    <span> Cidadão: <%= user.getEmail() %><a href="<%= UserController.logout() %>">Sair</a></span>
+    <span> CidadÃ£o: <%= user.getEmail() %><a href="<%= UserController.logout() %>">Sair</a></span>
    <%
      }
    %>

@@ -5,6 +5,16 @@ body {
 	font-size: 12px;
 }
 
+.press {
+margin:20px; 
+opacity: 0.4;
+}
+
+.press:hover {
+ opacity: 1.0;
+}
+
+
 .follow {
 	display: inline-block;
 	padding: 5px 11px;
