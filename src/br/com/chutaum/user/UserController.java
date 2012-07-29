@@ -89,14 +89,20 @@ public class UserController {
 		
 		Entity actionCount = Util.findEntity(KeyFactory.createKey(ACTION_COUNT, actionId));
 		
-		int count = 0;
 		
-		if(actionCount.getProperty(LIKE_COUNT) instanceof Integer){
-			count = (Integer)actionCount.getProperty(LIKE_COUNT);
-		}
+		int count =  Integer.parseInt(actionCount.getProperty(LIKE_COUNT).toString());
 		
 		actionCount.setProperty(LIKE_COUNT, --count);
 		
+		
+		
+		String voteActionId = generateKey(mail, actionId);
+		
+		Entity voteAction = new Entity(VOTE_ACTION, voteActionId);
+		
+		voteAction.setProperty(VOTE, Constants.NONE);
+		
+		Util.persistEntity(voteAction);
 		Util.persistEntity(actionCount);
 		
 		return count;
@@ -120,11 +126,8 @@ public class UserController {
 		if(actionCount == null){
 			actionCount = createActionEntity(actionId);
 		}
-		int count = 0;
-		
-		if(actionCount.getProperty(LIKE_COUNT) instanceof Integer){
-			count = (Integer)actionCount.getProperty(LIKE_COUNT);
-		}
+
+		int count =  Integer.parseInt(actionCount.getProperty(LIKE_COUNT).toString());
 		
 		actionCount.setProperty(LIKE_COUNT, ++count);
 		
@@ -156,7 +159,7 @@ public class UserController {
 			actionCount = createActionEntity(actionId);
 		}
 		
-		int count = (Integer)actionCount.getProperty(DISLIKE_COUNT);
+		int count =  Integer.parseInt(actionCount.getProperty(DISLIKE_COUNT).toString());
 		actionCount.setProperty(DISLIKE_COUNT, ++count);
 
 		Util.persistEntity(actionCount);
@@ -167,15 +170,16 @@ public class UserController {
 	
 	public static int undislikeAction(String mail, String actionId) {
 		Entity actionCount = Util.findEntity(KeyFactory.createKey(ACTION_COUNT, actionId));
-		
-		int count = 0;
-		
-		if(actionCount.getProperty(DISLIKE_COUNT) instanceof Integer){
-			count = (Integer)actionCount.getProperty(DISLIKE_COUNT);
-		}
-		
+		int count =  Integer.parseInt(actionCount.getProperty(DISLIKE_COUNT).toString());
 		actionCount.setProperty(DISLIKE_COUNT, --count);
+		Util.persistEntity(actionCount);
+		String voteActionId = generateKey(mail, actionId);
 		
+		Entity voteAction = new Entity(VOTE_ACTION, voteActionId);
+		
+		voteAction.setProperty(VOTE, Constants.NONE);
+		
+		Util.persistEntity(voteAction);
 		Util.persistEntity(actionCount);
 		
 		return count;

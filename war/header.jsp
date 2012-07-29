@@ -5,9 +5,9 @@
 <%@page import="java.util.Set"%>
 <%@ page import="java.net.*" %>
 <title>Vereadores.org</title>
-<script type="text/JavaScript" src="/script/jquery.min.js"></script> 
+<script type="text/JavaScript" src="/script/jquery-1.7.2.min.js"></script> 
 <script type="text/JavaScript" src="/script/follow.js"></script> 
-<script type="text/JavaScript" src="/script/vote.js"></script> 
+<script type="text/JavaScript" src="/script/vote.js?v=1"></script> 
 
 <script type="text/JavaScript" src="/script/jquery.endless-scroll.js?v=1"></script> 
 <link rel="stylesheet" type="text/css" href="/css/TimeLine.css?v=31" />

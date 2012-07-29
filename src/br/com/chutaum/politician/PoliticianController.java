@@ -49,6 +49,12 @@ public class PoliticianController {
 	}
 	
 	
+	public static Action findAction(String id){
+		com.google.appengine.api.datastore.Key parent = new KeyFactory.Builder(Entitys.Politician, Integer.parseInt(id.split("\\.")[1])).addChild(Entitys.PoliticianAction, id).getKey();	
+		return new Action(Util.findEntityAndAddCache(parent));
+	}
+	
+	
 	
 	
 	
