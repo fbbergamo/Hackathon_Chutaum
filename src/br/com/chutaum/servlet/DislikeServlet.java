@@ -1,6 +1,7 @@
 package br.com.chutaum.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,7 +28,10 @@ public class DislikeServlet extends HttpServlet{
 		if(user != null){
 			//verifica se é o usuário corrente
 			if(user.getEmail().equals(mail)){
-				UserController.DislikeAction(mail, actionId);
+				int count = UserController.DislikeAction(mail, actionId);
+				resp.setContentType("text/html");
+				PrintWriter out = resp.getWriter();
+				out.print("<span style='color:black; margin-right:16px' class='badge badge-success'>"+Integer.toString(count)+"<a style='color:black;' class='vote' href='/undislike?id=[ID]&mail=[EMAIL]%>'><i class='icon-thumbs-up'></i>CANCELAR</a></span>");
 			}
 
 			

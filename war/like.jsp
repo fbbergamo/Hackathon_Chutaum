@@ -12,8 +12,21 @@
 	long dislikeCount = 0;
 	
 	if(actionCount != null) {
-		likeCount = (Long) actionCount.getProperty("LikeCount");
-		dislikeCount = (Long) actionCount.getProperty("DislikeCount");
+		if(actionCount.getProperty("LikeCount") instanceof Long){
+			likeCount = (Long) actionCount.getProperty("LikeCount");
+				
+		}else if(actionCount.getProperty("LikeCount") instanceof Integer){
+			likeCount = (Integer) actionCount.getProperty("LikeCount");
+			
+		}
+		
+		if(actionCount.getProperty("DislikeCount") instanceof Long){
+			dislikeCount = (Long) actionCount.getProperty("DislikeCount");
+				
+		}else if(actionCount.getProperty("DislikeCount") instanceof Integer){
+			dislikeCount = (Integer) actionCount.getProperty("DislikeCount");
+			
+		}
 	}
 
  	//user nao null
