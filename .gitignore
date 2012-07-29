@@ -1,5 +1,4 @@
-
-/Chutaum/war/WEB-INF/lib/appengine-api-1.0-sdk-1.6.5.jar
+/Chutaum/war/WEB-INF/lib/*
 /Chutaum/war/WEB-INF/lib/appengine-api-labs-1.6.5.jar
 /Chutaum/war/WEB-INF/lib/appengine-jsr107cache-1.6.5.jar
 /Chutaum/war/WEB-INF/lib/datanucleus-appengine-1.0.10.final.jar
@@ -10,6 +9,16 @@
 /Chutaum/war/WEB-INF/lib/gwt-servlet.jar
 /Chutaum/war/WEB-INF/lib/jdo2-api-2.3-eb.jar
 /Chutaum/war/WEB-INF/lib/jsr107cache-1.1.jar
+/war/WEB-INF/classes/*
+/war/WEB-INF/lib/*
+/.classpath
+/war/WEB-INF/appengine-web.xml
+/war/WEB-INF/appengine-generated
 /war/WEB-INF/classes
 /war/WEB-INF/lib
-/.classpath
+/war/WEB-INF/classes
+/war/WEB-INF/lib
+/war/WEB-INF/appengine-generated/datastore-indexes-auto.xml
+/war/WEB-INF/appengine-generated/local_db.bin
+/war/WEB-INF/appengine-generated/local_db.bin
+/war/WEB-INF/appengine-generated/datastore-indexes-auto.xml
