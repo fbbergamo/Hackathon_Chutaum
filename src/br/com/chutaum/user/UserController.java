@@ -73,6 +73,25 @@ public class UserController {
 		return mail+actionID;
 	}
 
+	
+	public static int unlikeAction(String mail, String actionId){
+		
+		Entity actionCount = Util.findEntity(KeyFactory.createKey(ACTION_COUNT, actionId));
+		
+		int count = 0;
+		
+		if(actionCount.getProperty(LIKE_COUNT) instanceof Integer){
+			count = (Integer)actionCount.getProperty(LIKE_COUNT);
+		}
+		
+		actionCount.setProperty(LIKE_COUNT, --count);
+		
+		Util.persistEntity(actionCount);
+		
+		return count;
+	}
+	
+	
 	/**
 	 * Cria uma entidade LikeAction que guarda o voto de um usuário numa ação
 	 * @param mail
@@ -112,7 +131,7 @@ public class UserController {
 		
 	}
 	
-	public static void DislikeAction(String mail, String actionId){
+	public static int DislikeAction(String mail, String actionId){
 		
 		String voteActionId = generateKey(mail, actionId);
 		
@@ -131,7 +150,26 @@ public class UserController {
 
 		Util.persistEntity(actionCount);
 		Util.persistEntity(voteAction);
+		
+		return count;
 	}
+	
+	public static int undislikeAction(String mail, String actionId) {
+		Entity actionCount = Util.findEntity(KeyFactory.createKey(ACTION_COUNT, actionId));
+		
+		int count = 0;
+		
+		if(actionCount.getProperty(DISLIKE_COUNT) instanceof Integer){
+			count = (Integer)actionCount.getProperty(DISLIKE_COUNT);
+		}
+		
+		actionCount.setProperty(DISLIKE_COUNT, --count);
+		
+		Util.persistEntity(actionCount);
+		
+		return count;
+	}
+	
 	
 	
 	public static void followPolitician(User user, Politician poli){
@@ -218,7 +256,8 @@ public class UserController {
 		else
 			return "/login/logout";	
 	}
-	
+
+
 	
 }
 	
