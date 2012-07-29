@@ -6,6 +6,7 @@
 <%@page import="java.util.HashSet"%>
 <%@page import="java.util.Set"%>
 <%@ page import="java.net.*" %>
+<%@page pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -71,7 +72,7 @@
 	width: 100%;
 	background-color: #D2D9E7;
 	height: 250px;	">
-		<div class="box-content" style="padding-top: 25px;">      	<h4 style="margin-bottom:20px;">Contato:  contato@vereadores.org </h4>	
+		<div class="box-content" style="padding-top: 25px;">      	<h4 style="margin-bottom:20px;">contato@vereadores.org</h4>	
 		<h4>Vereadores.org na Imprensa: </h4>
 		<a href="http://cbn.globoradio.globo.com/cbn-sp/2012/06/09/EQUIPE-VENCE-MARATONA-TECNOLOGICA-COM-FACEBOOK-DE-VEREADORES-PAULISTANOS.htm" target="new"><img class="press" src="/images/cbn.jpg" /></a>
 		<a href="http://www.estadao.com.br/noticias/impresso,facebook-de-vereadores-ganha-concurso-,883368,0.htm" target="new"><img class="press" src="/images/estadao.jpg" /></a>
