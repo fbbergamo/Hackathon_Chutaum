@@ -76,6 +76,7 @@ public class ActionQueue  extends HttpServlet {
 			 	}
 		 	}
 		}
+	   Util.clearAllCache();
     }
 	
 

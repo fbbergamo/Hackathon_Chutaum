@@ -10,12 +10,17 @@ function button(e) {
 	
 	e.preventDefault();
 			
-			 var jqXHR = $.ajax({
+	
+	if ($(this).attr('href')=="#") {
+		 alert("Para votar é necessario fazer o Login ou Cadastro");
+	}
+	
+	else {
+		var jqXHR = $.ajax({
 		         url: $(this).attr('href'),
 		         context: $(this),
 		         doNotRetry: false
 		     });
-			
 			
 		     if (jqXHR) {
 		         jqXHR.done(function (data) {
@@ -24,7 +29,7 @@ function button(e) {
 		     }
 		     
 	         jqXHR.fail(function () { alert("Erro ao conectar o servidor") });
-		  
+}
 	 
 }
 

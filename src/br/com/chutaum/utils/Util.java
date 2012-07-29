@@ -354,6 +354,12 @@ public  static Key persistEntity(Entity entity) {
 		    return (List<Entity>) keycache.get(key);
   	}
   
+  	
+
+	public static void clearAllCache() {
+		    keycache.clearAll();
+  	}
+  
 
 	/**
 	 * Utility method to send the error back to UI

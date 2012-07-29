@@ -86,10 +86,10 @@
 	}else {%>
 		
 		<span class="badge badge-success" style="color:white; margin-right:16px"><%=likeCount %>
-		<i class="icon-thumbs-up"></i> CONCORDAR</span>
+		<a style="color:white;" class="vote" href="#"><i class="icon-thumbs-up"></i> CONCORDAR</span></a>
 		<span class="badge badge-important" style="color:white;"><%= dislikeCount %>
-		<i class="icon-thumbs-down"></i>
-		DISCORDAR</span>
+		<a style="color:white;" class="vote" href="#"><i class="icon-thumbs-down"></i>
+		DISCORDAR</span></a>
 		
 	<%}
 %>
