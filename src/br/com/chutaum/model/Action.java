@@ -147,7 +147,7 @@ public class Action  {
 	}
 	
 	public String getPhoto() {
-		return "/images/facebook.png";
+		return "/images/politician-photos/"+this.getIdPolition()+".jpg";
 	}
 	
 	
