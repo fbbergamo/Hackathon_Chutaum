@@ -34,7 +34,7 @@
 		
 		</div>
 		</br>
-		<div class="fb-like" data-href="http://chutaum.appspot.com/?vereador=<%= poli.getId() %>" data-send="true" data-layout="button_count"  data-width="200" data-show-faces="false" data-font="verdana"></div>
+		<div class="fb-like" data-href="http://www.vereadores.org/?vereador=<%= poli.getId() %>" data-send="true" data-layout="button_count"  data-width="200" data-show-faces="false" data-font="verdana"></div>
 		</div>
 		
 	</div>

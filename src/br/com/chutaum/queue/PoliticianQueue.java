@@ -33,6 +33,5 @@ public class PoliticianQueue extends HttpServlet {
 	 		entity.setProperty("Party",politician.getParty());
 	 		entity.setProperty("Photo",politician.getPhoto());
 	 		Util.persistEntity(entity);
-	
     }
 }

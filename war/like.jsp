@@ -7,7 +7,7 @@
 	com.google.appengine.api.users.UserService userService = UserServiceFactory.getUserService();
  	br.com.chutaum.model.User user = UserController.currentUser(session);
 	Action action = (Action) request.getAttribute("action"); 
-	Entity actionCount = Util.findEntity(KeyFactory.createKey("ActionCount", Long.toString(action.getId())));
+	Entity actionCount = Util.findEntity(KeyFactory.createKey("ActionCount", action.getId()));
 	long likeCount = 0;
 	long dislikeCount = 0;
 	

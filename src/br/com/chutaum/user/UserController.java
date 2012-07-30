@@ -1,13 +1,18 @@
 package br.com.chutaum.user;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import br.com.chutaum.model.Entitys;
 import br.com.chutaum.model.Politician;
 import br.com.chutaum.model.User;
+import br.com.chutaum.model.UserAction;
 import br.com.chutaum.utils.Constants;
 import br.com.chutaum.utils.Util;
+import br.com.chutaum.model.Action;
 
 import com.google.appengine.api.backends.BackendServiceFactory;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
@@ -17,6 +22,7 @@ import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.taskqueue.QueueFactory;
 import com.google.appengine.api.taskqueue.TaskOptions;
 import com.google.appengine.api.taskqueue.TaskOptions.Method;
@@ -45,7 +51,7 @@ public class UserController {
 		return null;
 	}
 	
-	public static User currentUser(HttpSession session){
+	public static User currentUser(HttpSession session) {
 		com.google.appengine.api.users.UserService userService = UserServiceFactory.getUserService();
 		String email = null;
 	    //verifica se tem login pelo google 
@@ -54,19 +60,24 @@ public class UserController {
 	    }	
 		//verifica se tem cache pelo facebook
 	    else if (session.getAttribute("authenticatedUserName")!=null) {
-	    	 email = session.getAttribute("authenticatedUserName").toString();
+	    		email = session.getAttribute("authenticatedUserName").toString();
 			 }
 		//se achou procura o usuario na base de dados e retornar
 	     if (email!= null ) {
-	    	 return findUser(email);
+	    	 return new User(email);
 	     }
 	     //se nem acho os cache retorna null direto user nao logado
 	     return null;
 		}
 	
-	public String userActions(User user, int sizepage, int offent) {
-		Key ancestorKey = KeyFactory.createKey(USER, user.getEmail());
-    	return Util.writeJSON(Util.listChildren("Actions", ancestorKey,sizepage,offent));
+	public static List<Action> userActions(User user, int sizepage, int offset) {
+		Key key = KeyFactory.createKey(Entitys.User, user.getEmail());
+		Iterable<Entity>  list =  Util.listChildrenAndOrderby(Entitys.UserAction, key, sizepage, offset,  "DateMs", SortDirection.DESCENDING, false);
+		List<Action> actions = new ArrayList<Action>();  
+		for (Entity tmp : list) {
+			actions.add(new UserAction(tmp));
+		}
+		return actions;
 	}
 	
 	private static String generateKey(String mail, String actionID){
@@ -132,7 +143,6 @@ public class UserController {
 		Util.persistEntity(actionCount);
 		Util.persistEntity(voteAction);
 	}
-	
 	
 	public static void followPolitician(User user, Politician poli){
 	

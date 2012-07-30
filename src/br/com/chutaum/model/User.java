@@ -13,6 +13,10 @@ public class User {
 		this.setRegistrationDate((Date) en.getProperty("registrationDate"));
 	}
 	
+	public User (String email) {
+		this.setEmail(email);
+	}
+	
 	public User () {}
 	
 	
@@ -39,9 +43,11 @@ public class User {
 	public void setFolling(List<Politician> folling) {
 		this.folling = folling;
 	}
+	
 	public Date getRegistrationDate() {
 		return registrationDate;
 	}
+	
 	public void setRegistrationDate(Date registrationDate) {
 		this.registrationDate = registrationDate;
 	}

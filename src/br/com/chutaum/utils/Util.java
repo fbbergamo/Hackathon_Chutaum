@@ -17,12 +17,10 @@
 package br.com.chutaum.utils;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
@@ -37,6 +35,7 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.datastore.Transaction;
 import com.google.appengine.api.memcache.MemcacheService;
 import com.google.appengine.api.memcache.MemcacheServiceFactory;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 /**
  * This is the utility class for all servlets. It provides method for inserting,
@@ -50,9 +49,7 @@ public class Util {
 
 
 	
-  private static final Logger logger = Logger.getLogger(Util.class.getCanonicalName());
   private static DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-
   private static MemcacheService keycache = MemcacheServiceFactory.getMemcacheService();
 
 	/**
@@ -62,21 +59,7 @@ public class Util {
 	 */
   
 public  static Key persistEntity(Entity entity) {
-    logger.log(Level.INFO, "Saving entity");
-    Key actionKey = null;
-    Key key = entity.getKey();
-    Transaction txn = datastore.beginTransaction();
-    try {
-      actionKey = datastore.put(entity);
-	  txn.commit();
-    } finally {
-	  if (txn.isActive()) {
-	    txn.rollback();
-	  } else {
-		addToCache(key, entity);
-	  }
-    }
-    return actionKey;
+      return datastore.put(entity);
   }
 
 	/**
@@ -87,8 +70,8 @@ public  static Key persistEntity(Entity entity) {
 	 *          : key to delete the entity from the persistent store
 	 */
   public static void deleteEntity(Key key) {
-	logger.log(Level.INFO, "Deleting entity");
 	Transaction txn = datastore.beginTransaction();
+	
 	try {
 	  datastore.delete(key);
 	  txn.commit();
@@ -125,13 +108,13 @@ public  static Key persistEntity(Entity entity) {
 	 * @return entity
 	 */
   public static Entity findEntityAndAddCache(Key key) {
-	logger.log(Level.INFO, "Search the entity");
 	try {
 	  Entity entity = getFromCache(key);
 	  
 	  if (entity != null) {
 		return entity;
 	  }
+	  
 	  entity= datastore.get(key);
 	  //se pesquisar uma entidade coloque ela em cache � bom p user mas pode lotar o cache se for 
 	  if (entity!=null) {
@@ -145,7 +128,6 @@ public  static Key persistEntity(Entity entity) {
   }
   
   public static Entity findEntity(Key key) {
-		logger.log(Level.INFO, "Search the entity");
 		try {
 		  Entity entity = getFromCache(key);
 		  if (entity != null) {
@@ -169,7 +151,6 @@ public  static Key persistEntity(Entity entity) {
 	 *         cache) with the specified properties
 	 */
   public static Iterable<Entity> listEntities(String kind, String searchBy, String searchFor) {
-    logger.log(Level.INFO, "Search entities based on search criteria");
     Query query = new Query(kind);
     if (searchFor != null && !"".equals(searchFor)) {
       query.addFilter(searchBy, FilterOperator.EQUAL, searchFor);
@@ -187,7 +168,6 @@ public  static Key persistEntity(Entity entity) {
 	 * @return iterable with all children of the parent of the specified kind
 	 */
   public static Iterable<Entity> listChildren(String kind, Key ancestor ) {
-	  logger.log(Level.INFO, "Search entities based on parent");
 	  Query query = new Query(kind);
 	  query.setAncestor(ancestor);
 	  query.addFilter(Entity.KEY_RESERVED_PROPERTY, FilterOperator.GREATER_THAN, ancestor);
@@ -205,7 +185,6 @@ public  static Key persistEntity(Entity entity) {
  * @return iterable with all children of the parent of the specified kind
  */
   public static Iterable<Entity> listChildren(String kind, Key ancestor,int sizePage, int offset ) {
-		logger.log(Level.INFO, "Search entities based on parent");
 		Query query = new Query(kind);
 		query.setAncestor(ancestor);
 		query.addSort("DateMs",SortDirection.DESCENDING);
@@ -213,6 +192,32 @@ public  static Key persistEntity(Entity entity) {
 		PreparedQuery pq = datastore.prepare(query);
 		return pq.asQueryResultIterable(fetchOptions.offset(offset));
   }
+  
+  public static  List<Entity> listChildrenAndOrderby(String kind, Key ancestor,int sizePage, int offset, String orderBy, SortDirection sort, Boolean cache ) {
+	  List<Entity> entitys = null;
+	  String cacheKey = "";
+	  
+	  if (cache) {
+		cacheKey = kind+"_"+ancestor.getId()+"_"+sizePage+"_"+offset+"_"+orderBy+"_"+sort.toString();
+		entitys = getFromCacheIterable(cacheKey);
+	  }	
+	  
+		if (entitys==null) { 
+			Query query = new Query(kind);
+			query.setAncestor(ancestor);
+			query.addSort(orderBy,sort);
+			FetchOptions fetchOptions = FetchOptions.Builder.withLimit(sizePage);
+			PreparedQuery pq = datastore.prepare(query);
+			entitys =  pq.asList(fetchOptions.offset(offset));
+
+			if (cache) keycache.put(cacheKey, entitys);
+			
+		}
+		
+		return entitys;
+  }
+
+  
 
 	/**
 	 * Get the list of keys of all children for a given entity kind in a given entity group 
@@ -222,7 +227,6 @@ public  static Key persistEntity(Entity entity) {
 	 * @return an iterable with keys of children
 	 */
   public static Iterable<Entity> listChildKeys(String kind, Key ancestor) {
-    logger.log(Level.INFO, "Search entities based on parent");
     Query query = new Query(kind);
     query.setAncestor(ancestor).setKeysOnly();
     
@@ -238,7 +242,6 @@ public  static Key persistEntity(Entity entity) {
 	 *          entities to return as JSON strings
 	 */
   public static String writeJSON(Iterable<Entity> entities) {
-    logger.log(Level.INFO, "creating JSON format object");
     StringBuilder sb = new StringBuilder();
     int i = 0;
     sb.append("{\"data\": [");
@@ -276,7 +279,6 @@ public  static Key persistEntity(Entity entity) {
 	 * @return JSON string
 	 */
   public static String writeJSON(Iterable<Entity> entities, String childKind, String fkName) {
-    logger.log(Level.INFO,"creating JSON format object for parent child relation");
     StringBuilder sb = new StringBuilder();
     int i = 0;
     sb.append("{\"data\": [");
@@ -316,7 +318,6 @@ public  static Key persistEntity(Entity entity) {
 	 *          : Entity being added
 	 */
   public static void addToCache(Key key, Entity entity) {
-    logger.log(Level.INFO, "Adding entity to cache");
     keycache.put(key, entity);
   }
 
@@ -326,7 +327,6 @@ public  static Key persistEntity(Entity entity) {
 	 * @param key : Key of the entity that needs to be deleted
 	 */
   public static void deleteFromCache(Key key) {
-    logger.log(Level.INFO, "Deleting entity from cache");
     keycache.delete(key);
   }
 
@@ -346,9 +346,14 @@ public  static Key persistEntity(Entity entity) {
 	 * @return the entity
 	 */
   public static Entity getFromCache(Key key) {
-    logger.log(Level.INFO, "Searching entity in cache");
     return (Entity) keycache.get(key);
   }
+  
+  	@SuppressWarnings("unchecked")
+	public static List<Entity> getFromCacheIterable(String key) {
+		    return (List<Entity>) keycache.get(key);
+  	}
+  
 
 	/**
 	 * Utility method to send the error back to UI

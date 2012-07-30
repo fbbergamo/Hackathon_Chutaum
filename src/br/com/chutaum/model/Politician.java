@@ -1,7 +1,7 @@
 package br.com.chutaum.model;
 
 import com.google.appengine.api.datastore.Entity;
-
+import com.google.appengine.api.datastore.Key;
 
 public class Politician {
 	private long id;
@@ -11,7 +11,16 @@ public class Politician {
 	private String telefone;
 	private String party;
 	private String photo;
+	private Key Key;
 	
+	public Key getKey() {
+		return Key;
+	}
+
+	public void setKey(Key key) {
+		Key = key;
+	}
+
 	public String getPhoto() {
 		return photo;
 	}
@@ -21,6 +30,7 @@ public class Politician {
 	}
 
 	public Politician(Entity en) {
+			this.setKey(en.getKey());
 		 	this.setId(en.getKey().getId());
 			this.setName(en.getProperty("Name").toString());
 			this.setParty(en.getProperty("Party").toString());
