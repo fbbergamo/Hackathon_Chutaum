@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Text;
@@ -33,7 +35,9 @@ public class Action  {
 	
 	public Action() {}
 	
+	@JsonIgnore
 	private String Key;
+	
 	private String id;
 	private Date date;
 	private String content;
@@ -50,6 +54,7 @@ public class Action  {
 		this.namePolitician = namePolitician;
 	}
 
+	@JsonIgnore
 	public String getKey() {
 		return Key;
 	}

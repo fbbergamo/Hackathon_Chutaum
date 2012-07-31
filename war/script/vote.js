@@ -12,9 +12,9 @@ function button(e) {
 			
 	
 	if ($(this).attr('href')=="#") {
-		 alert("Para votar é necessario fazer o Login ou Cadastro");
-	}
-	
+		 alert("Para votar Ã© necessario fazer o Login ou Cadastro");
+			}	
+			
 	else {
 		var jqXHR = $.ajax({
 		         url: $(this).attr('href'),

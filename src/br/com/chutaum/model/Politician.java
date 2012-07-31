@@ -1,16 +1,27 @@
 package br.com.chutaum.model;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
 
+
 public class Politician {
+	@JsonIgnore
 	private long id;
 	private String name;
 	private String description;
 	private String email;
 	private String telefone;
+	
+	@JsonIgnore
 	private String party;
+	
+	@JsonIgnore
 	private String photo;
+	
+	@JsonIgnore
 	private Key Key;
 	
 	public Key getKey() {

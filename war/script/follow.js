@@ -7,7 +7,7 @@ $(".follow").live('click',function(e) {
 	e.preventDefault();
 	
 	 if ($(this).attr('href')=="#") {
-		 alert("Para Seguir um vereador é necessario fazer o Login ou Cadastro"  );
+		 alert("Para Seguir um vereador Ã© necessario fazer o Login ou Cadastro"  );
 	 }
 	 else {
 		 
