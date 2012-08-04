@@ -45,7 +45,7 @@ public class PoliticianController {
 	
 	public static Iterable<Entity>  politicianFollow(Politician politician) {
 		Key ancestorKey = KeyFactory.createKey("Politician", politician.getId());
-    	 return Util.listChildren("PoliticanFollow", ancestorKey);
+    	return Util.listChildren("PoliticanFollow", ancestorKey);
 	}
 	
 	

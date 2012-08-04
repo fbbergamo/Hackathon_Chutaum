@@ -7,7 +7,11 @@ import java.util.Locale;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
+import br.com.chutaum.politician.PoliticianController;
+import br.com.chutaum.utils.Util;
+
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Text;
 
@@ -24,24 +28,28 @@ public class Action  {
 		this.setNamePolitician(en.getProperty("NamePolitician").toString());
 	}	
 	
-	public Action(String idAction, String content, Date date, App app, long poli) {
+	
+
+	
+	public Action(String idAction, String content, Date date, App app, int poli) {
+		Politician politician = PoliticianController.findPolitician(poli);
 		this.setContent(content);
 		this.setDate(date);
 		this.setIdPolition(poli);
 		this.setApp(app);
 		this.setId(generateActionID(poli, app, idAction));
 		this.setDateMs(date.getTime());
+		this.setPolitician(politician);
 	}
 	
 	public Action() {}
 	
-	@JsonIgnore
 	private String Key;
-	
 	private String id;
 	private Date date;
 	private String content;
 	private long idPolition;
+	private Politician politician;
 	private App App;
 	private long dateMs;
 	private String namePolitician;
@@ -115,6 +123,17 @@ public class Action  {
 		this.dateMs = dateMs;
 	}
 	
+	public Politician getPolitician() {
+		return politician;
+	}
+
+
+
+	public void setPolitician(Politician politician) {
+		this.politician = politician;
+	}
+
+	
 	public int getMonth() {
 			Calendar calendar;
 			calendar = Calendar.getInstance();
@@ -155,7 +174,22 @@ public class Action  {
 		return "/images/politician-photos/"+this.getIdPolition()+".jpg";
 	}
 	
+	public boolean save() {
+		Entity entity = this.createActionEntity();
+ 		Util.persistEntity(entity);
+ 		Iterable<Entity> array = PoliticianController.politicianFollow(this.getPolitician());
+ 		for (Entity en : array) {
+	 		Entity userAction =	this.createUserActionEntity(new User(en.getProperty("User").toString()));
+	 		Util.persistEntity(userAction);	
+ 		}
+ 		return true;
+	}
 	
+	public boolean destroy() {
+		return true;
+	}
+	
+	@Deprecated
 	public Entity createActionEntity(Politician poli) {
 		Entity entity = new Entity(Entitys.PoliticianAction,this.getId(),poli.getKey());
 		Text text = new Text(this.getContent());
@@ -165,6 +199,18 @@ public class Action  {
 		entity.setProperty("App",this.getApp().getID());
 		entity.setProperty("IdPolitician",poli.getId());
 		entity.setProperty("NamePolitician",poli.getName());
+		return entity;
+	}
+	
+	public Entity createActionEntity() {
+		Entity entity = new Entity(Entitys.PoliticianAction,this.getId(),this.getPolitician().getKey());
+		Text text = new Text(this.getContent());
+		entity.setProperty("Content", text);
+		entity.setProperty("Date",this.getDate());
+		entity.setProperty("DateMs", this.getDateMs());
+		entity.setProperty("App",this.getApp().getID());
+		entity.setProperty("IdPolitician",this.getPolitician().getId());
+		entity.setProperty("NamePolitician",this.getPolitician().getName());
 		return entity;
 	}
 	
