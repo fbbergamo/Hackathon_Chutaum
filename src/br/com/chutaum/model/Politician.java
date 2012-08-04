@@ -1,10 +1,17 @@
 package br.com.chutaum.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+import br.com.chutaum.politician.PoliticianController;
+import br.com.chutaum.utils.Util;
+
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 
 public class Politician {
@@ -39,6 +46,8 @@ public class Politician {
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
+	
+
 
 	public Politician(Entity en) {
 			this.setKey(en.getKey());
@@ -95,6 +104,16 @@ public class Politician {
 	}
 	public void setParty(String party) {
 		this.party = party;
+	}
+	
+	public List<User> getFollowers() {
+		List<User> users = new ArrayList<User>();
+		Key ancestorKey = KeyFactory.createKey("Politician", this.getId());
+		Iterable<Entity> entities = Util.listChildren("PoliticanFollow", ancestorKey);
+		for(Entity en : entities) {
+			users.add(new User(en.getProperty("User").toString()));
+		}
+	return users;
 	}
 	
 	

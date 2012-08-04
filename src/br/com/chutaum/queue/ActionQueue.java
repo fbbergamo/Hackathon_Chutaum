@@ -85,7 +85,7 @@ public class ActionQueue  extends HttpServlet {
 		try {
 			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");  
 			
-			Long idPolitician = Long.parseLong(input[0]);
+			Integer idPolitician = Integer.parseInt(input[0]);
 			String idAction = input[1];
 			String content = input[2];
 			Date date = format.parse(input[3]);
