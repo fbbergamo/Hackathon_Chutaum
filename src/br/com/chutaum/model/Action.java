@@ -185,6 +185,17 @@ public class Action  {
  		return true;
 	}
 	
+	public boolean isSaved() {
+		com.google.appengine.api.datastore.Key parent = new KeyFactory.Builder(Entitys.Politician, Integer.parseInt(this.getId().split("\\.")[1])).addChild(Entitys.PoliticianAction, id).getKey();	
+		Entity en = Util.findEntityAndAddCache(parent);
+		if (en!=null){
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
 	public boolean destroy() {
 		return true;
 	}
@@ -214,7 +225,7 @@ public class Action  {
 		return entity;
 	}
 	
-	private String generateActionID(long poli,App app, String idAction) {
+	private String generateActionID(int poli,App app, String idAction) {
 		return app.getID()+"."+poli+"."+idAction;
 	}
 	

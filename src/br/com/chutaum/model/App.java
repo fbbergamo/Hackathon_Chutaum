@@ -28,7 +28,7 @@ public class App {
 			this.Color = Votacao.getColor();
 			this.Name = Votacao.getName();
 			this.Icon = Votacao.getIcon();
-			this.Token = Votacao.getIcon();
+			this.Token = Votacao.getToken();
 		}
 		else if (id==2) {
 			this.ID = Projeto.getID();
