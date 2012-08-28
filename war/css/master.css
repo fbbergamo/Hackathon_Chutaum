@@ -43,6 +43,9 @@ opacity: 0.4;
 	color: darkSlateBlue;
 }
 
+.box-content h5{
+	color: darkSlateBlue;
+}
 
 #header .logo a {
 	float: left;

@@ -22,8 +22,9 @@
 	
 <div class="box-content" style="overflow:hidden">
 	<h1>Siga os vereadores de São Paulo</h1>
+	<h5>Confira a nossa <a href="http://www.facebook.com/pages/vereadoresorg/251890488264107">página do Facebook</a>.</h5>
 	<div class="sub-header">
-	<div class="fb-like" data-href="http://chutaum.appspot.com/" data-send="true" data-layout="box_count" data-width="450" data-show-faces="true" data-font="verdana"></div>
+	<div class="fb-like" data-href="http://www.facebook.com/pages/vereadoresorg/251890488264107" data-send="true" data-layout="box_count" data-width="450" data-show-faces="true" data-font="verdana"></div>
 	
 	</div>
 	<%	
