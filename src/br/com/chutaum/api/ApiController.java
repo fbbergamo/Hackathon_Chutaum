@@ -41,13 +41,23 @@ public class ApiController {
 	@RequestMapping( value =  "action/{name:.+}/update", method = RequestMethod.POST)
 	public @ResponseBody Boolean updateAction(@PathVariable String name, HttpServletRequest  req) throws ParseException {
 		Action action = getAction(req);
-		return action.save();	
+		if (action.isSaved()){
+			return action.save();
+		}
+		else {
+			return false;
+		}
 	}
 	
 	@RequestMapping( value =  "action/new", method = RequestMethod.POST)
-	public @ResponseBody Boolean newAction(@PathVariable String name, HttpServletRequest  req) throws ParseException {
+	public @ResponseBody Boolean newAction(HttpServletRequest  req) throws ParseException {
 		Action action = getAction(req);
-		return action.save();
+		if (!action.isSaved()){
+			return action.save();
+		}
+		else {
+			return false;
+		}
 	}
  
 	@RequestMapping( value =  "politician/{id}", method = RequestMethod.GET)
@@ -79,7 +89,7 @@ public class ApiController {
 	
 	private App getApp(String app, String token) {
 		App currentApp = new App(Integer.parseInt(app));
-		if (token == currentApp.getToken()){
+		if (token.equals(currentApp.getToken())){
 			return currentApp;
 		}
 		else return null;
