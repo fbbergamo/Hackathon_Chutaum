@@ -25,10 +25,7 @@
 		</h5>
 		</div>
 		<div class="sub-header" style="margin: 10px; text-align: center">
-			<div class="fb-like-box"
-				data-href="https://www.facebook.com/pages/vereadoresorg/251890488264107"
-				data-width="300" data-show-faces="true" data-stream="false"
-				data-header="false"></div>
+			<iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2Fvereadoresorg%2F251890488264107&amp;width=400&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;border_color&amp;stream=false&amp;header=true&amp;appId=424259360931150" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:400px; height:290px;" allowTransparency="true"></iframe>
 
 		</div>
 		<%
