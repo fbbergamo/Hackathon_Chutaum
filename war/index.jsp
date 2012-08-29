@@ -11,16 +11,12 @@
 <html>
 
 
-<head>
 
-<jsp:include page="header.jsp" />
 
-</head>
 <body>
-
-	<div id="fb-root"></div>
-	<script>
-		(function(d, s, id) {
+<div id="fb-root"></div>
+<script>
+	(function(d, s, id) {
 			var js, fjs = d.getElementsByTagName(s)[0];
 			if (d.getElementById(id))
 				return;
@@ -30,6 +26,9 @@
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
 	</script>
+
+<jsp:include page="header.jsp" />
+
 
 
 	<div class="box-content" style="overflow: hidden">
