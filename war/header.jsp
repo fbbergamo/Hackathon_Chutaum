@@ -4,6 +4,7 @@
 <%@page import="java.util.HashSet"%>
 <%@page import="java.util.Set"%>
 <%@ page import="java.net.*" %>
+<head>
 <title>Vereadores.org</title>
 <script type="text/JavaScript" src="/script/jquery-1.7.2.min.js?v=2"></script> 
 <script type="text/JavaScript" src="/script/follow.js?v=1"></script> 
@@ -32,9 +33,9 @@
   })();
 
 </script>
+</head>
 
-
-
+<body>
 <div id="header">
 <div class="box-content">
 <div class="logo"><a href="/">VEREADORES.ORG</a></div>
