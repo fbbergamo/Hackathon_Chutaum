@@ -9,14 +9,12 @@
 
 <!DOCTYPE html>
 <html>
-<head>
 
 	<jsp:include page="header.jsp" />
 
 	
-</head>
 
-<body>
+
  
 
 	<div class="politician-profile">
